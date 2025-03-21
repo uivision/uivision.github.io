@@ -858,6 +858,67 @@
       color: #3273dc !important;
       -webkit-text-fill-color: #3273dc !important;
     }
+    
+    /* Reset any existing icon styling that might be causing issues */
+    .insight-title, 
+    .title i,
+    h1 i, h2 i, h3 i, h4 i, h5 i, h6 i {
+      padding-left: 0;
+      position: static;
+      transform: none;
+    }
+    
+    /* Simple, consistent approach for all icons in titles */
+    h1 i, h2 i, h3 i, h4 i, h5 i, h6 i,
+    .title i {
+      margin-right: 16px !important; /* More spacing after icons in titles */
+      vertical-align: middle;
+      position: relative;
+      top: -1px; /* Slight adjustment for better vertical alignment */
+      color: #3273dc !important;
+      -webkit-text-fill-color: #3273dc !important;
+    }
+    
+    /* Only use absolute positioning for specific components that need it */
+    .feature-icon {
+      position: relative;
+    }
+    
+    .feature-icon i {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #3273dc;
+      -webkit-text-fill-color: #3273dc;
+    }
+    
+    /* Fix for FontAwesome icons to ensure they're visible with the gradient text */
+    .fas, .fab, .far, .fal {
+      color: #3273dc !important;
+      -webkit-text-fill-color: #3273dc !important;
+    }
+    
+    /* Fix for the specific feature-card layout */
+    .feature-card .feature-icon {
+      position: static;
+      padding-left: 0;
+      margin-bottom: 12px;
+    }
+    
+    .feature-card .feature-icon i {
+      position: static;
+      transform: none;
+      color: #3273dc !important;
+      -webkit-text-fill-color: #3273dc !important;
+      font-size: 1.5rem;
+      margin-right: 0;
+    }
+    
+    .feature-card h3.title.is-4 {
+      padding-left: 0 !important;
+      margin-top: 0.5rem;
+    }
   </style>
   
   <!-- Keep existing additional spacing adjustments style block -->
