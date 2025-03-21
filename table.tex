@@ -1,0 +1,514 @@
+\begin{table*}[t]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{l *{22}{c}}
+    \toprule
+         & \multicolumn{7}{c}{\textbf{Basic}} 
+         & \multicolumn{7}{c}{\textbf{Functional}} 
+         & \multicolumn{7}{c}{\textbf{Spatial}} 
+         & \multirow{2}{*}{\textbf{Final Avg}} \\[1ex]
+    \cmidrule(lr){2-8} \cmidrule(lr){9-15} \cmidrule(lr){16-22}
+    \textbf{Model} 
+        & Ed & Br & De & Pr & Cr & En & Overall 
+         & Ed & Br & De & Pr & Cr & En & Overall  
+         & Ed & Br & De & Pr & Cr & En & Overall 
+         &  \\[0.5ex] 
+         & (215) & (56) & (376) & (605) & (438) & (82) & (1772)  
+         & (215) & (56) & (376) & (605) & (438) & (82) & (1772)  
+         & (212) & (31) & (338) & (740) & (586) & (28) & (1935) 
+         &  \\[1ex] 
+    \midrule
+
+\multicolumn{23}{c}{\textit{\textbf{Closed-Source VLMs}}} \\
+
+
+\rowcolor{closed_models!50}
+{GPT-4o} \citep{gpt4o} 
+     & 2.23 
+     & 0.00 
+     & 1.86 
+     & 1.16 
+     & 1.14 
+     & \underline{4.88} 
+     & \cellcolor{closed_models}{1.58}
+     & 1.40 
+     & 0.00 
+     & 3.19 
+     & 0.83 
+     & 0.91 
+     & \underline{3.66} 
+     & \cellcolor{closed_models}{1.52}
+     & 0.94 
+     & 0.00 
+     & 1.48 
+     & 1.22 
+     & 0.51 
+     & 3.57 
+     & \cellcolor{closed_models}{1.03} 
+     & \cellcolor{closed_models}{1.38} \\[1ex]
+\rowcolor{closed_models!50}
+{Gemini-1.5-pro} \citep{gemini} 
+     & 0.47 
+     & 0.00 
+     & 1.60 
+     & 0.83 
+     & 0.46 
+     & 0.00  
+     & \cellcolor{closed_models}{0.79}
+     & 0.00 
+     & 1.79 
+     & 0.27 
+     & 0.17 
+     & 0.46 
+     & 0.00 
+     & \cellcolor{closed_models}{0.28}
+     & 0.94 
+     & 0.00 
+     & 0.89 
+     & 0.54 
+     & 0.34 
+     & 0.00 
+     & \cellcolor{closed_models}{0.57}
+     & \cellcolor{closed_models}{0.55} \\[1ex]
+\rowcolor{closed_models!50}
+{Gemini-Flash-2.0} \citep{gemini} 
+     & 0.00 
+     & 0.00 
+     & 0.27 
+     & 0.66 
+     & 0.68 
+     & 0.00 
+     & \cellcolor{closed_models}{0.45}
+     & 0.47 
+     & 1.79 
+     & 0.00 
+     & 0.66 
+     & 0.23 
+     & 0.00 
+     & \cellcolor{closed_models}{0.40}
+     & 0.00 
+     & 0.00 
+     & 0.00 
+     & 0.14 
+     & 0.00 
+     & 0.00 
+     & \cellcolor{closed_models}{0.05}
+     & \cellcolor{closed_models}{0.30} \\[1ex]
+\rowcolor{closed_models!50}
+{Claude-3.5-Sonnet} \citep{claude} 
+     & \underline{3.26} 
+     & \underline{16.1} 
+     & \underline{5.32} 
+     & \underline{6.94} 
+     & \underline{1.83} 
+     & \underline{4.88} 
+     & \cellcolor{closed_models}{\underline{5.08}}
+     & \underline{5.12} 
+     & \underline{19.6} 
+     & \underline{4.79} 
+     & \underline{5.95} 
+     & \underline{2.51} 
+     & \underline{4.88} 
+     & \cellcolor{closed_models}{\underline{5.19}}
+     & \underline{2.83} 
+     & \underline{9.68}  
+     & \underline{5.03} 
+     & \underline{2.43} 
+     & \underline{2.56} 
+     & \underline{7.14} 
+     & \cellcolor{closed_models}{\underline{3.15}} 
+     & \cellcolor{closed_models}{\underline{4.47}} \\[1ex]
+\rowcolor{closed_models!50}
+{Claude-3.7-Sonnet} \citep{claude} 
+     & \textbf{6.51} 
+     & \underline{12.5} 
+     & \textbf{7.98} 
+     & \textbf{11.24} 
+     & \textbf{9.13} 
+     & \textbf{11.0} 
+     & \cellcolor{closed_models}{\textbf{9.48}} 
+     & \underline{5.12} 
+     & \underline{7.14} 
+     & \textbf{8.24} 
+     & \textbf{9.92} 
+     & \textbf{6.16} 
+     & \textbf{4.88} 
+     & \cellcolor{closed_models}{\textbf{7.73}} 
+     & \textbf{6.60} 
+     & \textbf{9.68} 
+     & \textbf{7.69} 
+     & \textbf{7.43} 
+     & \textbf{7.85} 
+     & \textbf{10.7} 
+     & \cellcolor{closed_models}{\textbf{7.60}} 
+     & \cellcolor{closed_models}{\textbf{8.27}} \\[1ex]
+\midrule
+\multicolumn{23}{c}{\textit{\textbf{Open-Source VLMs}}} \\
+
+\rowcolor{open_vlm!50}
+{Qwen-2.5VL-7B} \citep{Qwen2VL} 
+     & 0.47 
+     & 0.00 
+     & 1.33 
+     & 1.65 
+     & 0.68 
+     & 1.22  
+     & \cellcolor{open_vlm}{1.24} 
+     & 0.47 
+     & 0.00 
+     & 0.80 
+     & 1.16 
+     & 0.46 
+     & 1.22 
+     & \cellcolor{open_vlm}{0.79} 
+     & \underline{0.47}
+     & 0.00 
+     & 1.48 
+     & 0.00 
+     & \underline{0.51} 
+     & 0.00 
+     & \cellcolor{open_vlm}{0.51} 
+     & \cellcolor{open_vlm}{0.85} \\[1ex]
+\rowcolor{open_vlm!50}
+{InternVL2-8B} \citep{chen2024internvl}  
+     & 0.00 
+     & 0.00 
+     & 0.00 
+     & 0.017 
+     & 0.00 
+     & 0.14 
+     & \cellcolor{open_vlm}{0.11} 
+     & 0.00 
+     & 0.00 
+     & 0.27 
+     & 0.00 
+     & 0.00 
+     & 1.22 
+     & \cellcolor{open_vlm}{0.11} 
+     & 0.00 
+     & 0.00 
+     & 0.00 
+     & 0.14 
+     & 0.00 
+     & 0.00 
+     & \cellcolor{open_vlm}{0.05} 
+     & \cellcolor{open_vlm}{0.09} \\[1ex]
+     
+\rowcolor{open_vlm!50}
+{Qwen-2VL-7B} \citep{Qwen2VL} 
+     & \underline{2.79} 
+     & \underline{7.14} 
+     & \underline{3.72} 
+     & \underline{3.97} 
+     & {0.68} 
+     & \underline{12.2} 
+     & \cellcolor{open_vlm}{\underline{3.44}} 
+     & \underline{2.79} 
+     & \underline{12.5} 
+     & \underline{3.19} 
+     & \underline{3.97} 
+     & \underline{0.68} 
+     & \underline{6.10} 
+     & \cellcolor{open_vlm}{\underline{3.22}} 
+     & 0.47 
+     & \textbf{3.23} 
+     & \textbf{2.37} 
+     & \textbf{1.08} 
+     & \underline{0.51} 
+     & \underline{3.57} 
+     & \cellcolor{open_vlm}{\underline{1.45}} 
+     & \cellcolor{open_vlm}{\underline{2.70}} \\[1ex]
+\rowcolor{open_vlm!50}
+{MiniCPM-V-8B} \citep{yao2024minicpm} 
+     & \textbf{4.19} 
+     & \textbf{21.4} 
+     & \textbf{7.71} 
+     & \textbf{7.44} 
+     & \textbf{3.65} 
+     & \textbf{18.3} 
+     & \cellcolor{open_vlm}{\textbf{7.11}} 
+     & \textbf{4.19} 
+     & \textbf{19.6} 
+     & \textbf{6.38} 
+     & \textbf{4.63} 
+     & \textbf{2.97} 
+     & \textbf{11.0} 
+     & \cellcolor{open_vlm}{\textbf{5.30}} 
+     & \textbf{0.47} 
+     & \underline{3.23} 
+     & 1.78 
+     & 0.27 
+     & 0.17 
+     & \textbf{3.57} 
+     & \cellcolor{open_vlm}{\textbf{1.45}} 
+     & \cellcolor{open_vlm}{\textbf{4.34}} \\[1ex]
+
+\midrule
+\multicolumn{23}{c}{\textit{\textbf{Open-Source GUI Agents}}} \\
+
+\rowcolor{open_models_gui_below_8B!50}
+    {ShowUI-2B} \citep{lin2024showui} 
+         & 5.12 & 16.1 & 9.84 & 9.09 & 3.42 & 19.5 & \cellcolor{open_models_gui_below_8B}8.07 
+         & 5.12 & 12.5 & 9.31 & 8.60 & 4.11 & 15.9 & \cellcolor{open_models_gui_below_8B}7.67 
+         & 0.94 & \underline{9.68} & 2.96 & 2.70 & 0.68 & 3.57 & \cellcolor{open_models_gui_below_8B}2.07 
+         & \cellcolor{open_models_gui_below_8B}5.94 \\[1ex]
+
+         
+\rowcolor{open_models_gui_below_8B!50}
+{AriaUI-25.3B} \citep{ariaui} 
+     & 10.7 
+     & 23.2 
+     & 13.0 
+     & 12.9 
+     & 8.22 
+     & 20.7 
+     & \cellcolor{open_models_gui_below_8B}{12.2} 
+     & 12.6 
+     & 19.6 
+     & 15.4 
+     & 14.6 
+     & 10.5 
+     & 22.0 
+     & \cellcolor{open_models_gui_below_8B}{14.0} 
+     & 3.77 
+     & \underline{9.68} 
+     & 4.44 
+     & 4.86 
+     & 2.22 
+     & 7.14 
+     & \cellcolor{open_models_gui_below_8B}{3.98} 
+     & \cellcolor{open_models_gui_below_8B}{10.1} \\[1ex]
+
+\rowcolor{open_models_gui_below_8B!50}
+{UGround-v1-7B} \citep{gou2024uground}  
+     & 11.6 
+     & 35.7 
+     & 19.7 
+     & 15.0 
+     & 11.0 
+     & 18.3 
+     & \cellcolor{open_models_gui_below_8B}{15.4} 
+     & 15.4 
+     & 33.9 
+     & \underline{22.3} 
+     & 16.5 
+     & 11.6 
+     & 19.5 
+     & \cellcolor{open_models_gui_below_8B}{17.1} 
+     & 4.25 
+     & 6.45 
+     & \underline{9.76} 
+     & \underline{6.35} 
+     & 4.44 
+     & \underline{14.3} 
+     & \cellcolor{open_models_gui_below_8B}{\underline{6.25}} 
+     & \cellcolor{open_models_gui_below_8B}{12.9} \\[1ex]
+
+\rowcolor{open_models_gui_below_8B!50}
+{OSAtlas-7B} \citep{wu2024atlas} 
+     & 10.7 
+     & 23.2 
+     & 13.3 
+     & 12.6 
+     & 8.22 
+     & 22.0 
+     & \cellcolor{open_models_gui_below_8B}{12.2} 
+     & 11.6 
+     & 16.1 
+     & 11.4 
+     & 12.7 
+     & 7.5 
+     & 13.4 
+     & \cellcolor{open_models_gui_below_8B}{11.2} 
+     & 3.77 
+     & 6.45 
+     & 5.62 
+     & 3.65 
+     & 2.22 
+     & 7.14 
+     & \cellcolor{open_models_gui_below_8B}{3.67} 
+     & \cellcolor{open_models_gui_below_8B}{9.02} \\[1ex]
+
+\rowcolor{open_models_gui_below_8B!50}
+{UGround-7B} \citep{gou2024uground} 
+     & 10.2 
+     & 23.2 
+     & 14.9 
+     & 10.6 
+     & 7.53 
+     & 19.5 
+     & \cellcolor{open_models_gui_below_8B}{11.5} 
+     & 12.1 
+     & 25.0 
+     & 15.2 
+     & 11.2 
+     & 7.99 
+     & 20.7 
+     & \cellcolor{open_models_gui_below_8B}{12.2} 
+     & 2.36 
+     & 0.00 
+     & 4.14 
+     & 2.70 
+     & 2.22 
+     & 7.14 
+     & \cellcolor{open_models_gui_below_8B}{2.79} 
+     & \cellcolor{open_models_gui_below_8B}{8.83} \\[1ex]
+
+\rowcolor{open_models_gui_below_8B!50}
+{Aguvis-7B} \citep{xu2024aguvisunifiedpurevision} 
+     & \textbf{16.7} 
+     & \underline{37.5} 
+     & \textbf{22.3} 
+     & \underline{16.2} 
+     & \underline{12.6} 
+     & \underline{26.8} 
+     & \cellcolor{open_models_gui_below_8B}{\underline{17.8}} 
+     & \underline{17.2} 
+     & \underline{35.7} 
+     & 21.5 
+     & \underline{18.0} 
+     & \underline{13.0} 
+     & \underline{24.4} 
+     & \cellcolor{open_models_gui_below_8B}{\underline{18.3}} 
+     & \underline{5.19} 
+     & \underline{9.68} 
+     & 6.51 
+     & 4.05 
+     & \underline{4.78} 
+     & \underline{14.3} 
+     & \cellcolor{open_models_gui_below_8B}{5.06} 
+     & \cellcolor{open_models_gui_below_8B}{\underline{13.7}} \\[1ex]
+
+\rowcolor{open_models_gui_below_8B!50}
+{UI-TARS-7B} \citep{uitars2025} 
+     & \underline{15.4} 
+     & \textbf{41.1} 
+     & \underline{21.8} 
+     & \textbf{21.2} 
+     & \textbf{13.2} 
+     & \textbf{39.0} 
+     & \cellcolor{open_models_gui_below_8B}{\textbf{20.1}} 
+     & \textbf{20.5} 
+     & \textbf{41.1} 
+     & \textbf{25.5} 
+     & \textbf{26.5} 
+     & \textbf{16.0} 
+     & \textbf{45.1} 
+     & \cellcolor{open_models_gui_below_8B}{\textbf{24.3}} 
+     & \textbf{6.60} 
+     & \textbf{12.9} 
+     & \textbf{11.0} 
+     & \textbf{9.2} 
+     & \textbf{5.8} 
+     & \textbf{17.9} 
+     & \cellcolor{open_models_gui_below_8B}{\textbf{8.37}} 
+     & \cellcolor{open_models_gui_below_8B}{\textbf{17.6}} \\[1ex]
+     \midrule
+\rowcolor{open_models_gui_over_8B!50}
+{CogAgent-9B} \citep{hong2024cogagent} 
+     & 11.2 
+     & 14.3 
+     & 12.5 
+     & 13.7 
+     & 8.68 
+     & 15.9 
+     & \cellcolor{open_models_gui_over_8B}{12.0} 
+     & 11.6 
+     & 14.3 
+     & 11.4 
+     & 14.7 
+     & 8.22 
+     & 18.3 
+     & \cellcolor{open_models_gui_over_8B}{12.2} 
+     & 3.30 
+     & 0.00 
+     & 1.18 
+     & 4.05 
+     & 1.37 
+     & 7.14 
+     & \cellcolor{open_models_gui_over_8B}{2.63} 
+     & \cellcolor{open_models_gui_over_8B}{8.94} \\[1ex]
+\rowcolor{open_models_gui_over_8B!50}
+{SeeClick-9.6B} \citep{seeclick} 
+     & 7.44 
+     & 23.2 
+     & 13.0 
+     & 8.43 
+     & 5.48 
+     & 17.1 
+     & \cellcolor{open_models_gui_over_8B}{9.42} 
+     & 4.65 
+     & 7.14 
+     & 5.32 
+     & 3.97 
+     & 4.34 
+     & 7.32 
+     & \cellcolor{open_models_gui_over_8B}{4.68} 
+     & 0.47 
+     & 6.45 
+     & 3.25 
+     & 1.22 
+     & 2.73 
+     & 3.57 
+     & \cellcolor{open_models_gui_over_8B}{2.07} 
+     & \cellcolor{open_models_gui_over_8B}{5.39} \\[1ex]
+     
+\rowcolor{open_models_gui_over_8B!50}
+{UGround-v1-72B} \citep{gou2024uground} 
+     & \underline{27.0} 
+     & \underline{42.9} 
+     & \underline{31.7} 
+     & \underline{26.6} 
+     & \underline{22.8} 
+     & \underline{40.2} 
+     & \cellcolor{open_models_gui_over_8B}{\underline{27.9}} 
+     & \underline{25.1} 
+     & \underline{33.9} 
+     & \underline{30.6} 
+     & \underline{26.6} 
+     & \underline{21.0} 
+     & \underline{40.2} 
+     & \cellcolor{open_models_gui_over_8B}{\underline{26.7}} 
+     & \textbf{15.1} 
+     & \textbf{25.8} 
+     & \textbf{19.8} 
+     & \underline{13.4} 
+     & \underline{12.8} 
+     & \underline{25.0} 
+     & \cellcolor{open_models_gui_over_8B}{\textbf{14.9}} 
+     & \cellcolor{open_models_gui_over_8B}{\underline{23.2}} \\[1ex]
+
+\rowcolor{open_models_gui_over_8B!50}
+{UI-TARS-72B} \citep{uitars2025} 
+     & \textbf{30.7} 
+     & \textbf{48.2} 
+     & \textbf{32.7} 
+     & \textbf{33.6} 
+     & \textbf{21.9} 
+     & \textbf{51.2} 
+     & \cellcolor{open_models_gui_over_8B}{\textbf{31.4}} 
+     & \textbf{29.8} 
+     & \textbf{46.4} 
+     & \textbf{30.9} 
+     & \textbf{34.1} 
+     & \textbf{22.6} 
+     & \textbf{36.6} 
+     & \cellcolor{open_models_gui_over_8B}{\textbf{30.5}} 
+     & \underline{13.7} 
+     & \underline{16.1} 
+     & \underline{19.2} 
+     & \textbf{15.4} 
+     & \textbf{11.1} 
+     & \textbf{25.0} 
+     & \cellcolor{open_models_gui_over_8B}{\underline{14.7}} 
+     & \cellcolor{open_models_gui_over_8B}{\textbf{25.5}} \\
+
+\bottomrule
+
+
+
+    \end{tabular}
+    }
+    \caption{\grounding results by category for Basic, Functional, and Spatial settings. For each setting, the first six columns (Ed, Br, De, Pr, Cr, En) present the fine-grained breakdown, followed by an overall score column. The number of samples in each category is noted under the column name. The final column shows the overall average. Abbreviated category labels: Ed (Education), Br (Browsers), De (Development), Pr (Productivity), Cr (Creativity), En (Entertainment). The best model within each size category is highlighted in \textbf{bold}, and the runner-up is \underline{underlined}. Models are categorized by size: \colorbox{closed_models!70}{{gray}} marks closed-source models, \colorbox{open_vlm!50}{{green}} indicates open-source VLM models, \colorbox{open_models_gui_below_8B!50}{{blue}} represents open-source GUI Agent models below 8B (active) parameters, \colorbox{open_models_gui_over_8B!50}{{orange}} denotes open-source GUI Agent models above (active) 8B parameters.}
+    \label{tab:grounding_finegrained}
+\end{table*}
