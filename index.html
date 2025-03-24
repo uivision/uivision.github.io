@@ -126,6 +126,25 @@
     </div>
   </section>
 
+  <section class="nav-section">
+    <div class="container is-max-desktop">
+      <nav class="content-nav">
+        <a href="#intro" class="nav-item active">
+          <span class="nav-text">Overview</span>
+        </a>
+        <a href="#dataset" class="nav-item">
+          <span class="nav-text">Dataset & Benchmark</span>
+        </a>
+        <a href="#results" class="nav-item">
+          <span class="nav-text">Results</span>
+        </a>
+        <a href="#citation" class="nav-item">
+          <span class="nav-text">Citation</span>
+        </a>
+      </nav>
+    </div>
+  </section>
+
   <section class="section" id="intro">
     <div class="container is-max-desktop">
       <div class="content">
@@ -1020,6 +1039,32 @@
           });
         });
       });
+
+      // Navigation highlight on scroll
+      const sections = document.querySelectorAll('section[id]');
+      const navItems = document.querySelectorAll('.nav-item');
+      
+      function highlightNavigation() {
+        const scrollY = window.scrollY;
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 100;
+          const sectionBottom = sectionTop + section.offsetHeight;
+          const sectionId = section.getAttribute('id');
+          
+          if (scrollY >= sectionTop && scrollY < sectionBottom) {
+            navItems.forEach(item => {
+              item.classList.remove('active');
+              if (item.getAttribute('href') === `#${sectionId}`) {
+                item.classList.add('active');
+              }
+            });
+          }
+        });
+      }
+
+      window.addEventListener('scroll', highlightNavigation);
+      highlightNavigation(); // Initial check
     });
   </script>
 </body>

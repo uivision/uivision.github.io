@@ -2521,3 +2521,67 @@ body {
     justify-content: center;
   }
 }
+
+.nav-section {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 0;
+}
+
+.content-nav {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem 0;
+  margin: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.content-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-item {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-item:hover {
+  color: var(--text-primary);
+}
+
+.nav-item.active {
+  color: var(--text-primary);
+}
+
+.nav-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--primary-color);
+  border-radius: 1px;
+}
+
+@media (max-width: 768px) {
+  .content-nav {
+    gap: 1.5rem;
+    padding: 0.75rem 1rem;
+  }
+  
+  .nav-item {
+    font-size: 0.9rem;
+  }
+}
