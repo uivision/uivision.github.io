@@ -1,1154 +1,467 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="description" content="UI-Vision">
   <meta name="keywords" content="GUI Benchmark for Visual Perception and Interaction">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UI-Vision</title>
+  <title>UI-Vision: A Desktop-centric GUI Benchmark for Visual Perception and Interaction</title>
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/square.png">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
   <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.16.0/gradio.js"></script>
-  
-  <style>
-    body {
-      font-family: 'Google Sans', sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-      line-height: 1.6;
-    }
-    
-    .hero {
-      background: linear-gradient(135deg, #f9fbfd 0%, #e6eef7 100%);
-      padding: 2rem 0;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    }
-    
-    /* Make the pattern much more subtle */
-    .hero:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.01' fill-rule='evenodd'%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/svg%3E");
-      opacity: 0.3;
-      z-index: 0;
-    }
-    
-    .hero-body {
-      padding: 3rem 1.5rem;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .publication-title {
-      font-weight: bold;
-      color: #2c3e50;
-      margin-bottom: 1.5rem;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      border-bottom: 3px solid rgba(0,0,0,0.08);
-      padding-bottom: 1rem;
-      display: inline-block;
-      transition: all 0.3s ease;
-      cursor: default;
-    }
-    
-    .publication-title:hover {
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
-      color: #1e3a8a;
-    }
-    
-    .publication-authors {
-      margin-bottom: 1.5rem;
-      padding: 0.5rem;
-    }
-    
-    .author-block {
-      margin-right: 10px;
-      display: inline-block;
-      margin-bottom: 6px;
-    }
-    
-    .author-block a {
-      transition: all 0.3s ease;
-      text-decoration: none;
-      padding: 3px 7px;
-      border-radius: 6px;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .author-block a:hover {
-      transform: translateY(-2px);
-      text-decoration: none;
-      background-color: rgba(255,255,255,0.7);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.07);
-      font-weight: normal;
-    }
-    
-    .author-block sup {
-      transition: all 0.3s ease;
-    }
-    
-    .author-block:hover sup {
-      color: inherit;
-      font-weight: normal;
-    }
-    
-    .publication-authors span.author-block b {
-      transition: all 0.3s ease;
-      padding: 2px 5px;
-      border-radius: 4px;
-    }
-    
-    .section {
-      padding: 2rem 1.5rem;
-      position: relative;
-    }
-    
-    .section + .section {
-      padding-top: 1rem;
-    }
-    
-    .hero .hero-body {
-      padding-bottom: 1.5rem;
-    }
-    
-    .columns.mb-5 {
-      margin-bottom: 2rem !important;
-    }
-    
-    .title.is-3 {
-      margin-bottom: 1.5rem;
-    }
-    
-    /* Remove pattern from sections */
-    .section:nth-child(even) {
-      background-color: #f8fafc;
-      background-image: none;
-    }
-    
-    .light-bg {
-      background-color: #f0f4f8;
-      border-radius: 10px;
-      margin: 1.5rem 0;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      border: 1px solid rgba(0,0,0,0.03);
-    }
-    
-    .project-image {
-      max-width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid rgba(255,255,255,0.7);
-    }
-    
-    .project-image:hover {
-      transform: scale(1.02);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-    }
-    
-    .caption {
-      font-style: italic;
-      color: #555;
-      margin-top: 1rem;
-      font-size: 0.95em;
-      background-color: rgba(255,255,255,0.7);
-      padding: 8px 15px;
-      display: inline-block;
-      border-radius: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    
-    .content h3.title {
-      color: #2e5c8a;
-      margin-top: 2.5rem;
-      border-bottom: 2px solid rgba(50, 115, 220, 0.2);
-      padding-bottom: 0.7rem;
-      font-weight: 600;
-    }
-    
-    .content h4.title {
-      color: #3a3a3a;
-      margin-top: 1.7rem;
-      font-weight: 600;
-    }
-    
-    .content ul li, .content ol li {
-      margin-bottom: 0.7rem;
-    }
-    
-    .content strong {
-      color: #2e5c8a;
-    }
-    
-    .publication-links {
-      margin-top: 1.8rem;
-      padding: 8px 0;
-      display: inline-block;
-    }
-    
-    .external-link {
-      margin: 0 0.3rem;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    
-    .external-link:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
-    
-    .teaser {
-      background-color: #f0f4f8;
-      border-radius: 10px;
-      margin-top: 2.5rem;
-      border: 1px solid rgba(0,0,0,0.05);
-    }
-    
-    .logo-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100px;
-      height: 100px;
-      padding: 10px;
-      border-radius: 50%;
-      background: white;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 0 0 10px rgba(255,255,255,0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      margin: 0 auto 2rem auto;
-      border: 1px solid rgba(0,0,0,0.05);
-    }
-    
-    .logo-container:hover {
-      transform: scale(1.05) rotate(5deg);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 0 0 12px rgba(255,255,255,0.5);
-    }
-    
-    .logo-image {
-      width: 100px;
-      height: 100px;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
-    
-    .feature-card {
-      background: white;
-      border-radius: 10px;
-      padding: 1.8rem;
-      height: 100%;
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.07);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid rgba(0,0,0,0.03);
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 1.2rem;
-    }
-    
-    .feature-card:after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 5px;
-      background: linear-gradient(90deg, #3273dc, #3298dc);
-      border-radius: 0 0 10px 10px;
-      transform: scaleX(0);
-      transform-origin: bottom;
-      transition: transform 0.3s ease;
-    }
-    
-    .feature-card:hover {
-      transform: translateY(-7px);
-      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.12);
-    }
-    
-    .feature-card:hover:after {
-      transform: scaleX(1);
-    }
-    
-    .feature-icon {
-      font-size: 2.2rem;
-      color: #3273dc;
-      margin-bottom: 1.2rem;
-      background-color: rgba(50, 115, 220, 0.1);
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-    }
-    
-    .task-card {
-      background: white;
-      border-radius: 10px;
-      padding: 1.8rem;
-      margin-bottom: 1.8rem;
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.07);
-      border-left: 4px solid #3273dc;
-      transition: all 0.3s ease;
-    }
-    
-    .task-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 20px rgba(0,0,0,0.12);
-    }
-    
-    .hero-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    
-    .button.is-dark {
-      background-color: #2c3e50;
-      transition: all 0.3s ease;
-      border: none;
-    }
-    
-    .button.is-dark:hover {
-      background-color: #34495e;
-      transform: translateY(-3px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    
-    /* Container backgrounds - more subtle */
-    .container.is-max-desktop {
-      background-color: rgba(255, 255, 255, 0.85);
-      border-radius: 15px;
-      padding: 1.5rem;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      border: 1px solid rgba(0,0,0,0.02);
-    }
-    
-    /* Highlight effect on section titles */
-    .title.is-3, .title.is-4 {
-      transition: all 0.3s ease;
-      cursor: default;
-    }
-    
-    .title.is-3:hover, .title.is-4:hover {
-      transform: translateY(-2px);
-      text-shadow: 0 2px 10px rgba(50, 115, 220, 0.3);
-    }
-    
-    /* Add proper tooltip styling */
-    [data-tooltip] {
-      position: relative;
-      cursor: pointer;
-    }
-    
-    [data-tooltip]:before {
-      content: attr(data-tooltip);
-      position: absolute;
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 8px 10px;
-      background-color: rgba(0, 0, 0, 0.8);
-      color: white;
-      border-radius: 4px;
-      white-space: nowrap;
-      font-size: 0.85rem;
-      font-weight: normal;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
-      z-index: 100;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      transform: translateX(-50%) translateY(10px);
-    }
-    
-    [data-tooltip]:after {
-      content: "";
-      position: absolute;
-      bottom: 100%;
-      left: 50%;
-      margin-left: -5px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.2s ease, visibility 0.2s ease;
-      z-index: 100;
-    }
-    
-    [data-tooltip]:hover:before {
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(-50%) translateY(0);
-    }
-    
-    [data-tooltip]:hover:after {
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    /* Affiliations section styling - completely remove hover effects */
-    .affiliations {
-      margin-top: 10px;
-      font-size: 0.9em;
-    }
-    
-    .affiliations .author-block {
-      margin-right: 8px;
-    }
-    
-    /* Disable all hover effects for affiliations */
-    .affiliations .author-block a,
-    .affiliations .author-block a:hover,
-    .affiliations .author-block:hover b,
-    .affiliations .author-block:hover {
-      background-color: transparent;
-      box-shadow: none;
-      transform: none;
-      transition: none;
-    }
-    
-    .affiliations .author-block:hover sup {
-      color: inherit;
-      font-weight: normal;
-    }
-    
-    .affiliations .author-block a:hover {
-      transform: none;
-      background-color: transparent;
-      box-shadow: none;
-    }
-    
-    /* Enhanced interactive table with better spacing */
-    .result-table {
-      font-size: 0.8rem;
-      border-collapse: collapse;
-      width: 100%;
-      border: 1px solid #ddd;
-      table-layout: fixed;
-    }
-    
-    .result-table th {
-      background-color: #f2f6fc;
-      color: #2c3e50;
-      font-weight: 600;
-      text-align: center;
-      padding: 8px 2px;
-      vertical-align: middle;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      border: 1px solid #ddd;
-      font-size: 0.7rem;
-      min-width: 40px; /* Minimum width for columns */
-    }
-    
-    .result-table td {
-      text-align: center;
-      padding: 4px 2px;
-      border: 1px solid #eaeaea;
-      min-width: auto;
-      width: auto;
-      font-size: 0.75rem;
-    }
-    
-    /* Significantly wider first column with better spacing */
-    .result-table th:first-child,
-    .result-table td:first-child {
-      position: sticky;
-      left: 0;
-      background-color: #f8f9fa;
-      z-index: 20;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-      width: 140px;
-      min-width: 140px;
-      max-width: 140px;
-      text-align: left;
-      padding-left: 10px;
-      border-right: 2px solid #ccc;
-    }
-    
-    /* Make sure the rest of the columns have enough space too */
-    .result-table th:not(:first-child),
-    .result-table td:not(:first-child) {
-      min-width: auto;
-      width: auto;
-      padding: 4px 2px;
-    }
-    
-    /* Ensure model names don't overflow by adding text truncation */
-    .result-table td:first-child {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      padding-right: 15px;
-    }
-    
-    /* Fix background colors for sticky first column in different row types */
-    .result-table tr.closed-model td:first-child {
-      background-color: rgba(108, 117, 125, 0.1);
-    }
-    
-    .result-table tr.open-vlm td:first-child {
-      background-color: rgba(40, 167, 69, 0.1);
-    }
-    
-    .result-table tr.small-gui-agent td:first-child {
-      background-color: rgba(0, 123, 255, 0.1);
-    }
-    
-    .result-table tr.large-gui-agent td:first-child {
-      background-color: rgba(255, 193, 7, 0.1);
-    }
-    
-    .result-table .best-score {
-      font-weight: 700;
-      color: #1a5fb4;
-    }
-    
-    .result-table .category-header {
-      background-color: #ebeef2 !important;
-      font-weight: 600;
-      text-align: left;
-      padding-left: 10px;
-    }
-    
-    /* Add width to the table - will make it scrollable */
-    .result-table {
-      width: 1400px; /* Fixed width to ensure enough space */
-    }
-    
-    /* Enhanced table container with scroll indicator */
-    .table-container {
-      max-width: 100%;
-      margin-bottom: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding-bottom: 5px;
-      overflow-x: visible;
-    }
-    
-    /* Scroll indicator */
-    .table-container::after {
-      content: none;
-    }
-    
-    .table-note {
-      font-size: 0.85rem;
-      margin-top: 0.5rem;
-      text-align: center;
-      color: #666;
-    }
-    
-    /* Make sure the container doesn't cause page overflow */
-    .column.is-full-width {
-      padding: 0.5rem;
-    }
-    
-    /* Responsive adjustments for small screens */
-    @media screen and (max-width: 768px) {
-      .result-table {
-        font-size: 0.7rem;
-      }
-      
-      .result-table th {
-        font-size: 0.65rem;
-        padding: 4px 1px;
-      }
-      
-      .result-table td {
-        padding: 3px 1px;
-      }
-      
-      .result-table th:first-child,
-      .result-table td:first-child {
-        min-width: 90px;
-        max-width: 90px;
-      }
-      
-      .section {
-        padding: 1.5rem 1rem;
-      }
-      
-      .columns.mb-5 {
-        margin-bottom: 1.5rem !important;
-      }
-    }
-    
-    /* Enhanced Results & Insights Section Styling */
-    .insights-section {
-      background-color: #f8fafc;
-      border-radius: 12px;
-      padding: 2rem;
-      margin: 2rem 0;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      border: 1px solid rgba(0,0,0,0.03);
-    }
-    
-    .insights-header {
-      color: #2e5c8a;
-      font-size: 1.8rem;
-      border-left: 4px solid #3273dc;
-      padding-left: 15px;
-      margin-bottom: 1.8rem;
-      position: relative;
-      display: inline-block;
-    }
-    
-    .insights-header:after {
-      content: "";
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, #3273dc, #3298dc);
-    }
-    
-    .insight-card {
-      background: white;
-      border-radius: 10px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border-top: 3px solid #3273dc;
-    }
-    
-    .insight-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-    }
-    
-    .insight-title {
-      color: #2c3e50;
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-    }
-    
-    .insight-title i {
-      color: #3273dc;
-      margin-right: 10px;
-    }
-    
-    .insight-content {
-      color: #4a4a4a;
-      line-height: 1.6;
-      font-size: 1.05rem;
-    }
-    
-    .insight-metric {
-      display: inline-block;
-      background: rgba(50, 115, 220, 0.1);
-      color: #3273dc;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-weight: 600;
-      margin: 0 2px;
-    }
-    
-    .insight-comparison {
-      display: flex;
-      margin: 1.5rem 0;
-      background: #f9f9f9;
-      border-radius: 8px;
-      padding: 1rem;
-      border: 1px solid #eee;
-    }
-    
-    .comparison-item {
-      flex: 1;
-      text-align: center;
-      padding: 0.5rem;
-      position: relative;
-    }
-    
-    .comparison-item:not(:last-child):after {
-      content: "→";
-      position: absolute;
-      right: -10px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #aaa;
-      font-size: 1.2rem;
-    }
-    
-    .comparison-label {
-      font-size: 0.85rem;
-      color: #666;
-      margin-bottom: 5px;
-    }
-    
-    .comparison-value {
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #2c3e50;
-    }
-    
-    .comparison-value.positive {
-      color: #28a745;
-    }
-    
-    .comparison-value.negative {
-      color: #dc3545;
-    }
-    
-    .highlight-text {
-      background: linear-gradient(transparent 70%, rgba(50, 115, 220, 0.2) 100%);
-      padding: 0 3px;
-    }
-    
-    .conclusion-box {
-      background: linear-gradient(to right, #f8f9fa, #fff);
-      border-left: 4px solid #3273dc;
-      padding: 1.2rem;
-      margin-top: 2rem;
-      border-radius: 0 8px 8px 0;
-      font-size: 1.05rem;
-      line-height: 1.6;
-    }
-    
-    /* Additional styling for titles */
-    .title.is-1, .title.is-2, .title.is-3, .title.is-4, .title.is-5 {
-      background: linear-gradient(90deg, #2c3e50, #3273dc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-      display: inline-block;
-      margin-bottom: 1rem; /* Reduced from default */
-      position: relative;
-      transition: all 0.3s ease;
-    }
-    
-    .title.is-1:after, .title.is-2:after, .title.is-3:after {
-      content: "";
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #3273dc, #4a8eff);
-      transition: width 0.3s ease;
-    }
-    
-    .title.is-1:hover:after, .title.is-2:hover:after, .title.is-3:hover:after {
-      width: 100%;
-    }
-    
-    .title.is-1:hover, .title.is-2:hover, .title.is-3:hover, .title.is-4:hover, .title.is-5:hover {
-      transform: translateY(-2px);
-      background: linear-gradient(90deg, #3273dc, #5e9eff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-    }
-    
-    /* Adjustments for publication title specifically */
-    .publication-title {
-      background: linear-gradient(90deg, #2c3e50, #3273dc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-    }
-    
-    .publication-title:hover {
-      background: linear-gradient(90deg, #3273dc, #5e9eff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-      text-shadow: none;
-    }
-    
-    /* Section spacing adjustments */
-    .section {
-      padding: 2rem 1.5rem;
-    }
-    
-    .section + .section {
-      padding-top: 1rem;
-    }
-    
-    /* Further reduce margins between elements */
-    .columns {
-      margin-bottom: 1.5rem;
-    }
-    
-    h2.title.is-3 {
-      margin-bottom: 1.2rem;
-    }
-    
-    h3.title.is-4 {
-      margin-bottom: 1rem;
-    }
-    
-    /* Make insight titles compatible with the gradient but keep their icons visible */
-    .insight-title, 
-    .title.is-4 i, 
-    .feature-icon, 
-    h4.insight-title i {
-      position: relative;
-      padding-left: 42px;
-    }
-    
-    .insight-title i,
-    .title.is-4 i,
-    .feature-icon i {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #3273dc;
-      -webkit-text-fill-color: #3273dc;
-    }
-    
-    /* Fix for all h4 titles with icons */
-    h4 i {
-      color: #3273dc !important;
-      -webkit-text-fill-color: #3273dc !important;
-      margin-right: 10px;
-    }
-    
-    /* Additional fix to ensure all FontAwesome icons in titles remain visible */
-    .title .fas, 
-    .title .fab, 
-    .title .far, 
-    .title .fal,
-    .insight-content .fas,
-    .feature-card .fas {
-      color: #3273dc;
-      -webkit-text-fill-color: #3273dc;
-      margin-right: 8px;
-    }
-    
-    /* Specific fix for title icons like puzzle pieces */
-    h1 i, h2 i, h3 i, h4 i, h5 i, h6 i,
-    .title i {
-      margin-right: 16px !important; /* More spacing after icons in titles */
-      vertical-align: middle;
-      position: relative;
-      top: -1px; /* Slight adjustment for better vertical alignment */
-      color: #3273dc !important;
-      -webkit-text-fill-color: #3273dc !important;
-    }
-    
-    /* Reset any existing icon styling that might be causing issues */
-    .insight-title, 
-    .title i,
-    h1 i, h2 i, h3 i, h4 i, h5 i, h6 i {
-      padding-left: 0;
-      position: static;
-      transform: none;
-    }
-    
-    /* Simple, consistent approach for all icons in titles */
-    h1 i, h2 i, h3 i, h4 i, h5 i, h6 i,
-    .title i {
-      margin-right: 16px !important; /* More spacing after icons in titles */
-      vertical-align: middle;
-      position: relative;
-      top: -1px; /* Slight adjustment for better vertical alignment */
-      color: #3273dc !important;
-      -webkit-text-fill-color: #3273dc !important;
-    }
-    
-    /* Only use absolute positioning for specific components that need it */
-    .feature-icon {
-      position: relative;
-    }
-    
-    .feature-icon i {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #3273dc;
-      -webkit-text-fill-color: #3273dc;
-    }
-    
-    /* Fix for FontAwesome icons to ensure they're visible with the gradient text */
-    .fas, .fab, .far, .fal {
-      color: #3273dc !important;
-      -webkit-text-fill-color: #3273dc !important;
-    }
-    
-    /* Fix for the specific feature-card layout */
-    .feature-card .feature-icon {
-      position: static;
-      padding-left: 0;
-      margin-bottom: 12px;
-    }
-    
-    .feature-card .feature-icon i {
-      position: static;
-      transform: none;
-      color: #3273dc !important;
-      -webkit-text-fill-color: #3273dc !important;
-      font-size: 1.5rem;
-      margin-right: 0;
-    }
-    
-    .feature-card h3.title.is-4 {
-      padding-left: 0 !important;
-      margin-top: 0.5rem;
-    }
-  </style>
-  
-  <!-- Keep existing additional spacing adjustments style block -->
-  <style>
-    /* Additional spacing adjustments */
-    .section {
-      padding: 2rem 1.5rem; /* Reduced from default 3rem 1.5rem */
-    }
-    
-    .section + .section {
-      padding-top: 1rem; /* Further reduce spacing between consecutive sections */
-    }
-    
-    .hero .hero-body {
-      padding-bottom: 1.5rem; /* Reduce bottom padding of hero */
-    }
-    
-    .columns.mb-5 {
-      margin-bottom: 2rem !important; /* Reduce the default mb-5 spacing */
-    }
-    
-    .title.is-3 {
-      margin-bottom: 1.5rem; /* Smaller margin below section titles */
-    }
-    
-    /* Adjust vertical spacing in cards */
-    .feature-card, .insight-card {
-      margin-bottom: 1.2rem;
-    }
-    
-    /* More compact spacing for mobile */
-    @media screen and (max-width: 768px) {
-      .section {
-        padding: 1.5rem 1rem;
-      }
-      
-      .columns.mb-5 {
-        margin-bottom: 1.5rem !important;
-      }
-    }
-  </style>
 </head>
 
 <body>
   <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="hero-content">
-          <div class="logo-container">
-            <img src="./static/images/square.png" alt="UI-Vision Logo" class="logo-image">
+    <div class="container is-max-desktop">
+      <div class="hero-content">
+        <div class="logo-container">
+          <img src="./static/images/square.png" alt="UI-Vision Logo" class="logo-image">
+        </div>
+        
+        <h1 class="publication-title">UI-Vision: A Desktop-centric GUI Benchmark for Visual Perception and Interaction</h1>
+        
+        <div class="publication-links">
+          <span class="link-block">
+            <a href="http://arxiv.org/abs/2503.15661" target="_blank" class="button is-dark">
+              <span class="icon">
+                <i class="fas fa-file-pdf"></i>
+              </span>
+              <span>Read the Paper</span>
+            </a>
+          </span>
+          <span class="link-block">
+            <button class="button is-dark" disabled>
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+              <span>GitHub</span>
+              <span class="coming-soon-badge">COMING SOON</span>
+            </button>
+          </span>
+          <span class="link-block">
+            <button class="button is-dark" disabled>
+              <span class="icon">
+                <i class="fas fa-database"></i>
+              </span>
+              <span>Download Dataset</span>
+              <span class="coming-soon-badge">COMING SOON</span>
+            </button>
+          </span>
+        </div>
+        
+        <div class="publication-authors">
+          <div class="author-list">
+            <span class="author-block">
+              <a href="#" style="color:#f68946;">Shravan Nayak<sup>*,1,2,3</sup></a>,
+            </span>
+            <span class="author-block">
+              <a href="#" style="color:#F2A900;">Xiangru Jian<sup>*,4,3</sup></a>,
+            </span>
+            <span class="author-block">
+              <a href="#" style="color:#f68946;">Kevin Qinghong Lin<sup>5</sup></a>,
+            </span>
+            <span class="author-block">
+              <a href="#" style="color:#F2A900;">Juan A. Rodriguez<sup>1,6,3</sup></a>,
+            </span>
+            <span class="author-block">
+              <a href="#" style="color:#008AD7;">Montek Kalsi<sup>3</sup></a>,
+            </span>
+            <span class="author-block">
+              <a href="#" style="color:#f68946;">Rabiul Awal<sup>1,2,3</sup></a>,
+            </span>
+            <span class="author-block">
+              <a href="#" style="color:#f68946;">Nicolas Chapados<sup>3</sup></a>,
+            </span>
+            <span class="author-block">
+              <a href="#" style="color:#008AD7;">M. Tamer Özsu<sup>4</sup></a>,
+            </span>
+            <span class="author-block">
+              <a href="#" style="color:#f68946;">Aishwarya Agrawal<sup>1,2,7</sup></a>,
+            </span>
+            <span class="author-block">
+              <a href="#" style="color:#008AD7;">David Vazquez<sup>3</sup></a>,
+            </span>
+            <span class="author-block">
+              <a href="#" style="color:#f68946;">Christopher Pal<sup>1,8,3,7</sup></a>,
+            </span>
+            <span class="author-block">
+              <a href="#" style="color:#F2A900;">Perouz Taslakian<sup>3</sup></a>,
+            </span>
+            <span class="author-block">
+              <a href="#" style="color:#008AD7;">Spandana Gella<sup>3</sup></a>,
+            </span>
+            <span class="author-block">
+              <a href="#" style="color:#f68946;">Sai Rajeswar<sup>1,2,3</sup></a>
+            </span>
           </div>
-          <h1 class="title is-1 publication-title">UI-Vision: A Desktop-centric GUI Benchmark for Visual Perception and Interaction</h1>
           
-          <div class="publication-links">
-            <span class="link-block">
-              <a href="http://arxiv.org/abs/2503.15661" target="_blank"
-                class="external-link button is-normal is-rounded is-dark">
-                <span class="icon">
-                  <i class="fas fa-file-pdf"></i>
-                </span>
-                <span>Read the Paper</span>
-              </a>
-            </span>
-            <span class="link-block">
-              <button class="external-link button is-normal is-rounded is-dark" disabled style="opacity: 0.85; position: relative;">
-                <span class="icon">
-                  <i class="fab fa-github"></i>
-                </span>
-                <span>GitHub</span>
-                <span style="position: absolute; top: -10px; right: -10px; background: #ff9800; color: white; border-radius: 12px; padding: 0px 8px; font-size: 10px; font-weight: bold;">COMING SOON</span>
-              </button>
-            </span>
-            <span class="link-block">
-              <button class="external-link button is-normal is-rounded is-dark" disabled style="opacity: 0.85; position: relative;">
-                <span class="icon">
-                  <i class="fas fa-database"></i>
-                </span>
-                <span>Download Dataset</span>
-                <span style="position: absolute; top: -10px; right: -10px; background: #ff9800; color: white; border-radius: 12px; padding: 0px 8px; font-size: 10px; font-weight: bold;">COMING SOON</span>
-              </button>
-            </span>
+          <div class="author-affiliations">
+            <span class="author-block"><sup>*</sup>Equal contribution</span>
+            <span class="author-block"><sup>1</sup>Mila - Quebec AI Institute</span>
+            <span class="author-block"><sup>2</sup>Université de Montréal</span>
+            <span class="author-block"><sup>3</sup>ServiceNow</span>
+            <span class="author-block"><sup>4</sup>University of Waterloo</span>
+            <span class="author-block"><sup>5</sup>National University of Singapore</span>
+            <span class="author-block"><sup>6</sup>École de Technologie Supérieure</span>
+            <span class="author-block"><sup>7</sup>CIFAR AI Chair</span>
+            <span class="author-block"><sup>8</sup>Polytechnique Montréal</span>
           </div>
           
-          <div class="is-size-5 publication-authors">
-            <div class="is-size-5 publication-authors">
-              <span class="author-block">
-                <a href="#" style="color:#f68946;font-weight:normal;">Shravan Nayak<sup> *,1,2,3 </sup></a> ,
-              </span>
-              <span class="author-block">
-                <a href="#" style="color:#F2A900;font-weight:normal;">Xiangru Jian<sup> *,4,3 </sup></a> ,
-              </span>
-              <span class="author-block">
-                <a href="#" style="color:#f68946;font-weight:normal;">Kevin Qinghong Lin<sup> 5 </sup></a> ,
-              </span>
-              <span class="author-block">
-                <a href="#" style="color:#F2A900;font-weight:normal;">Juan A. Rodriguez<sup> 1,6,3 </sup></a> ,
-              </span>
-              <span class="author-block">
-                <a href="#" style="color:#008AD7;font-weight:normal;">Montek Kalsi<sup> 3 </sup></a> ,
-              </span>
-              <span class="author-block">
-                <a href="#" style="color:#f68946;font-weight:normal;">Rabiul Awal<sup> 1,2,3 </sup></a> ,
-              </span>
-              <span class="author-block">
-                <a href="#" style="color:#f68946;font-weight:normal;">Nicolas Chapados<sup> 3 </sup></a> ,
-              </span>
-              <span class="author-block">
-                <a href="#" style="color:#008AD7;font-weight:normal;">M. Tamer Özsu<sup> 4 </sup></a>,
-              </span>
-              <span class="author-block">
-                <a href="#" style="color:#f68946;font-weight:normal;">Aishwarya Agrawal<sup> 1,2,7 </sup></a> ,
-              </span>
-              <span class="author-block">
-                <a href="#" style="color:#008AD7;font-weight:normal;">David Vazquez<sup> 3 </sup></a> ,
-              </span>
-              <span class="author-block">
-                <a href="#" style="color:#f68946;font-weight:normal;">Christopher Pal<sup> 1,8,3,7 </sup></a> ,
-              </span>
-              <span class="author-block">
-                <a href="#" style="color:#F2A900;font-weight:normal;">Perouz Taslakian<sup> 3 </sup></a> ,
-              </span>
-              <span class="author-block">
-                <a href="#" style="color:#008AD7;font-weight:normal;">Spandana Gella<sup> 3 </sup></a> ,
-              </span>
-              <span class="author-block">
-                <a href="#" style="color:#f68946;font-weight:normal;">Sai Rajeswar<sup> 1,2,3 </sup></a>
-              </span>
-            </div>
-            
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><b style="color:#f68946; font-weight:normal">&#x25B6 </b><sup>*</sup>Equal contribution</span>
-              <span class="author-block"><b style="color:#0a5178; font-weight:normal">&#x25B6 </b><sup>1</sup>Mila - Quebec AI Institute</span>
-              <span class="author-block"><b style="color:#F2A900; font-weight:normal">&#x25B6 </b><sup>2</sup>Université de Montréal</span>
-              <span class="author-block"><b style="color:#35625d; font-weight:normal">&#x25B6 </b><sup>3</sup>ServiceNow</span>
-              <span class="author-block"><b style="color:#008AD7; font-weight:normal">&#x25B6 </b><sup>4</sup>University of Waterloo</span>
-              <span class="author-block"><b style="color:#55181c; font-weight:normal">&#x25B6 </b><sup>5</sup>National University of Singapore</span>
-              <span class="author-block"><b style="color:#35625d; font-weight:normal">&#x25B6 </b><sup>6</sup>École de Technologie Supérieure</span>
-              <span class="author-block"><b style="color:#008AD7; font-weight:normal">&#x25B6 </b><sup>7</sup>CIFAR AI Chair</span>
-              <span class="author-block"><b style="color:#f68946; font-weight:normal">&#x25B6 </b><sup>8</sup>Polytechnique Montréal</span>
-            </div>
-            <div class="is-size-5 publication-authors">
-              <span style="font-size: 0.9em;">Correspondence to: Shravan Nayak &lt;shravan.nayak@mila.quebec&gt;, Xiangru Jian &lt;x2jian@uwaterloo.ca&gt;</span>
-            </div>
+          <div class="author-correspondence">
+            <span>Correspondence to: Shravan Nayak &lt;shravan.nayak@mila.quebec&gt;, Xiangru Jian &lt;x2jian@uwaterloo.ca&gt;</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Introduction Section -->
   <section class="section" id="intro">
     <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column is-10">
-          <div class="content light-bg" style="padding: 2rem; text-align: center;">
-            <p class="is-size-4" style="margin-bottom: 0;">
-              <strong>UI-Vision</strong> is the first large-scale benchmark for evaluating AI models in real-world desktop GUI environments. 
-              It provides dense, high-quality human annotations for GUI interaction across 83 applications, supporting tasks like 
-              element grounding, layout grounding, and action prediction.
-            </p>
+      <div class="content">
+        <div class="overview-section">
+          <div class="overview-header">
+            <div class="title-group">
+              <h1>UI-Vision</h1>
           </div>
+            <div class="key-metrics">
+              <span><i class="fas fa-desktop"></i>Desktop GUI</span>
+              <span><i class="fas fa-database"></i>83 Apps</span>
+              <span><i class="fas fa-brain"></i>AI Benchmark</span>
         </div>
       </div>
       
-      <div class="columns is-centered mt-4 mb-5">
-        <div class="column is-full-width">
-          <div class="content has-text-centered">
-            <img src="./static/images/teaser-data.png" alt="Benchmark Overview" class="project-image">
-            <p class="caption">Figure 1: UI-Vision Benchmark Overview, key strengths and tasks</p>
+          <div class="overview-content">
+            <div class="capabilities-panel">
+              <h2><i class="fas fa-star"></i>Core Capabilities</h2>
+              <div class="capabilities-list">
+                <div class="capability">
+                  <i class="fas fa-crosshairs"></i>
+                  <span>Element Grounding</span>
           </div>
+                <div class="capability">
+                  <i class="fas fa-th-large"></i>
+                  <span>Layout Analysis</span>
         </div>
+                <div class="capability">
+                  <i class="fas fa-play-circle"></i>
+                  <span>Action Prediction</span>
       </div>
     </div>
-  </section>
-  
-  <!-- Why UI-Vision Section -->
-  <section class="section" id="why">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column">
-          <h2 class="title is-3">Why UI-Vision?</h2>
+            </div>
+            
+            <div class="image-container">
+              <img src="./static/images/teaser-data.png" alt="UI-Vision Benchmark Overview" class="showcase-image">
+            </div>
         </div>
       </div>
       
-      <div class="columns is-centered mb-5">
-        <div class="column">
-          <div class="feature-card">
-            <div class="feature-icon">
+        <div class="challenge-solution-container">
+          <div class="challenge-section">
+            <div class="section-header">
               <i class="fas fa-exclamation-triangle"></i>
+              <span>The Challenge</span>
             </div>
-            <h3 class="title is-4">The Challenge</h3>
-            <p>Current GUI automation research focuses on web-based tasks, leaving desktop environments underexplored. 
-            The lack of standardized datasets and visual complexity of software interfaces pose significant challenges for AI models.</p>
+            <div class="list-item">
+              <i class="fas fa-times"></i>
+              <span>Limited desktop environment focus</span>
           </div>
+            <div class="list-item">
+              <i class="fas fa-times"></i>
+              <span>Lack of standardized benchmarks</span>
         </div>
-        <div class="column">
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-gift"></i>
+            <div class="list-item">
+              <i class="fas fa-times"></i>
+              <span>Complex interface interactions</span>
             </div>
-            <h3 class="title is-4">What UI-Vision Offers</h3>
-            <p>UI-Vision provides a comprehensive dataset with expert-verified annotations, 
-            covering diverse software applications. It allows models to be evaluated on realistic GUI tasks, 
-            bridging the gap between research and real-world desktop automation.</p>
           </div>
+
+          <div class="solution-section">
+            <div class="section-header">
+              <i class="fas fa-lightbulb"></i>
+              <span>Our Solution</span>
+            </div>
+            <div class="list-item">
+              <i class="fas fa-check"></i>
+              <span>Expert-verified annotations</span>
+            </div>
+            <div class="list-item">
+              <i class="fas fa-check"></i>
+              <span>Diverse application coverage</span>
+            </div>
+            <div class="list-item">
+              <i class="fas fa-check"></i>
+              <span>Real-world automation tasks</span>
+            </div>
         </div>
       </div>
       
-      <div class="columns is-centered mb-5">
-        <div class="column is-6">
-          <div class="content">
-            <img src="./static/images/teaser.png" alt="Software Distribution" class="project-image">
-            <p class="caption">Figure 2: Software Distribution - Variety of applications included in UI-Vision</p>
+        <div class="example-section">
+          <div class="example-toggle">
+            <button class="toggle-btn active" data-example="automation">
+              <i class="fas fa-robot"></i>
+              <span>Agent Automation Example</span>
+            </button>
+            <button class="toggle-btn" data-example="grounding">
+              <i class="fas fa-crosshairs"></i>
+              <span>Agent Grounding Example</span>
+            </button>
           </div>
-        </div>
-        <div class="column is-6">
-          <div class="insight-card">
-            <h4 class="insight-title"><i class="fas fa-play-circle"></i>Action Prediction</h4>
-            <div class="insight-content">
-              <p>Our most complex task requires models to predict appropriate actions given a task description, a screenshot, and action history. The task evaluates sequential decision-making abilities in GUI environments.</p>
-              
-              <p>For example, as shown in the image, a model might be asked to:</p>
-              <ol style="padding-left: 1.5rem; margin-left: 0.5rem;">
-                <li>Create a circle sketch in CAD software</li>
-                <li>Navigate through menus to find specific functions</li>
-                <li>Create a pocket using the sketch as a guide</li>
-                <li>Set parameters like depth (5.00mm)</li>
-              </ol>
-              
-              <p>Success in this task requires understanding both the current state of the interface and the goal-directed sequence of actions needed to complete complex operations across diverse software applications.</p>
+          
+          <div class="example-containers">
+            <!-- Agent Automation Example -->
+            <div class="example-container active" id="automation-example">
+              <div class="task-metadata">
+                <div class="metadata-item">
+                  <i class="fas fa-desktop"></i>
+                  <span>OS: Windows 11</span>
+                </div>
+                <div class="metadata-item">
+                  <i class="fas fa-cube"></i>
+                  <span>Platform: FreeCAD</span>
+                </div>
+                <div class="metadata-item">
+                  <i class="fas fa-code-branch"></i>
+                  <span>Version: 0.20.2</span>
+                </div>
+              </div>
+
+              <div class="task-prompt">
+                <div class="task-prompt-label">
+                  <i class="fas fa-terminal"></i>
+                  <span>Example Task</span>
+                </div>
+                <div class="task-prompt-content">
+                  <div class="command-line">
+                    <span class="prompt">$</span>
+                    <span class="command">process_input</span>
+                    <span class="args">--app=</span><span class="string">"freecad"</span>
+                    <span class="args">--input=</span><span class="string">"data.json"</span>
+                    <span class="args">--model=</span><span class="string">"ui-tars-72b"</span>
+                  </div>
+                  <div class="input-sections">
+                    <div class="input-section">
+                      <div class="section-header">
+                        <i class="fas fa-file-code"></i>
+                        <span>data.json (Step 2 of N)</span>
+                      </div>
+                      <div class="section-content">
+                        <div class="input-json">{
+  "task_description": "Create a circle sketch and a 5.00mm pocket with the created sketch.",
+  "current_step": "Navigate menus",
+  "step_index": 2,
+  "screenshot": "current_frame.png",
+  "action_history": [
+    "CLICK(1058, 537)",
+    "MOVE_TO(974, 472)",
+    "DRAG_TO(949, 417)"
+  ]
+}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="task-sequence">
+                <div class="sequence-step">
+                  <div class="step-number">1</div>
+                  <div class="step-text">Draw circle on XY plane</div>
+                </div>
+                <div class="sequence-step">
+                  <div class="step-number">2</div>
+                  <div class="step-text">Select pocket operation</div>
+                </div>
+                <div class="sequence-step">
+                  <div class="step-number">3</div>
+                  <div class="step-text">Choose circle as profile</div>
+                </div>
+                <div class="sequence-step">
+                  <div class="step-number">4</div>
+                  <div class="step-text">Set pocket depth: 5.00mm</div>
+                </div>
+              </div>
+
+              <div class="task-preview">
+                <img src="./static/images/teaser.png" alt="CAD Task Example" class="showcase-image">
+                <div class="image-caption">
+                  <i class="fas fa-layer-group"></i>
+                  <span>Agent Execution: Step-by-step CAD Task Automation</span>
+                </div>
+              </div>
+
+              <div class="benchmark-section">
+                <div class="system-requirements">
+                  <div class="req-items">
+                    <div class="req-item">
+                      <div class="req-header">
+                        <i class="fas fa-eye"></i>
+                        <span>Visual Analysis</span>
+                      </div>
+                      <div class="req-details">
+                        <span class="req-status">[ Required ]</span>
+                        <span class="req-desc">Detect and locate UI elements in interface</span>
+                      </div>
+                    </div>
+
+                    <div class="req-item">
+                      <div class="req-header">
+                        <i class="fas fa-sitemap"></i>
+                        <span>State Tracking</span>
+                      </div>
+                      <div class="req-details">
+                        <span class="req-status">[ Required ]</span>
+                        <span class="req-desc">Monitor system state and element changes</span>
+                      </div>
+                    </div>
+
+                    <div class="req-item">
+                      <div class="req-header">
+                        <i class="fas fa-code-branch"></i>
+                        <span>Action Planning</span>
+                      </div>
+                      <div class="req-details">
+                        <span class="req-status">[ Required ]</span>
+                        <span class="req-desc">Generate optimal step sequence</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="validation-checks">
+                    <div class="success-metrics">
+                      <i class="fas fa-check-circle"></i>
+                      <span class="metrics-label">Required Capabilities:</span>
+                      <span class="metric-item">[ 1. Element Detection ]</span>
+                      <span class="metric-separator">→</span>
+                      <span class="metric-item">[ 2. Action Sequencing ]</span>
+                      <span class="metric-separator">→</span>
+                      <span class="metric-item">[ 3. Parameter Accuracy ]</span>
+                      <span class="metric-separator">→</span>
+                      <span class="metric-item">[ 4. Task Completion ]</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Agent Grounding Example -->
+            <div class="example-container" id="grounding-example">
+              <div class="task-metadata">
+                <div class="metadata-item">
+                  <i class="fas fa-desktop"></i>
+                  <span>OS: Windows 11</span>
+                </div>
+                <div class="metadata-item">
+                  <i class="fas fa-window-maximize"></i>
+                  <span>Platform: Chrome</span>
+                </div>
+                <div class="metadata-item">
+                  <i class="fas fa-code-branch"></i>
+                  <span>Version: 120.0</span>
+                </div>
+              </div>
+
+              <div class="task-prompt">
+                <div class="task-prompt-label">
+                  <i class="fas fa-terminal"></i>
+                  <span>Example Task</span>
+                </div>
+                <div class="task-prompt-content">
+                  <div class="command-line">
+                    <span class="prompt">$</span>
+                    <span class="command">process_input</span>
+                    <span class="args">--app=</span><span class="string">"chrome"</span>
+                    <span class="args">--input=</span><span class="string">"query.json"</span>
+                    <span class="args">--model=</span><span class="string">"ui-tars-72b"</span>
+                  </div>
+                  <div class="input-sections">
+                    <div class="input-section">
+                      <div class="section-header">
+                        <i class="fas fa-file-code"></i>
+                        <span>query.json</span>
+                      </div>
+                      <div class="section-content">
+                        <div class="input-json">{
+  "task_description": "Find and highlight the main navigation menu in the browser interface",
+  "current_step": "Element grounding",
+  "step_index": 1,
+  "screenshot": "browser_interface.png",
+  "query": "Locate the main navigation menu"
+}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grounding-preview">
+                <img src="./static/images/grounding.png" alt="Grounding Example" class="showcase-image">
+                <div class="image-caption">
+                  <i class="fas fa-layer-group"></i>
+                  <span>Agent Response: Visual Grounding of UI Elements</span>
+                </div>
+              </div>
+
+              <div class="benchmark-section">
+                <div class="system-requirements">
+                  <div class="req-items">
+                    <div class="req-item">
+                      <div class="req-header">
+                        <i class="fas fa-eye"></i>
+                        <span>Visual Understanding</span>
+                      </div>
+                      <div class="req-details">
+                        <span class="req-status">[ Required ]</span>
+                        <span class="req-desc">Analyze and interpret UI layouts and elements</span>
+                      </div>
+                    </div>
+
+                    <div class="req-item">
+                      <div class="req-header">
+                        <i class="fas fa-object-group"></i>
+                        <span>Element Detection</span>
+                      </div>
+                      <div class="req-details">
+                        <span class="req-status">[ Required ]</span>
+                        <span class="req-desc">Identify and locate specific UI components</span>
+                      </div>
+                    </div>
+
+                    <div class="req-item">
+                      <div class="req-header">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Spatial Reasoning</span>
+                      </div>
+                      <div class="req-details">
+                        <span class="req-status">[ Required ]</span>
+                        <span class="req-desc">Understand relative positions and layouts</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="validation-checks">
+                    <div class="success-metrics">
+                      <i class="fas fa-check-circle"></i>
+                      <span class="metrics-label">Required Capabilities:</span>
+                      <span class="metric-item">[ 1. Visual Analysis ]</span>
+                      <span class="metric-separator">→</span>
+                      <span class="metric-item">[ 2. Element Detection ]</span>
+                      <span class="metric-separator">→</span>
+                      <span class="metric-item">[ 3. Spatial Understanding ]</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1169,38 +482,65 @@
         <h3 class="insights-header">Dataset Composition</h3>
         
         <div class="insight-card">
-          <h4 class="insight-title"><i class="fas fa-database"></i>Scale & Diversity</h4>
           <div class="insight-content">
-            <div class="columns">
-              <div class="column is-7">
-                <p>UI-Vision spans <span class="insight-metric">83</span> software applications across <span class="insight-metric">6</span> domains, capturing real user interactions through screen recordings and expert annotations. The dataset contains over <span class="insight-metric">8,200</span> query-label pairs and <span class="insight-metric">450</span> recorded demonstrations.</p>
-                
-                <div class="insight-comparison">
-                  <div class="comparison-item">
-                    <div class="comparison-label">Applications</div>
-                    <div class="comparison-value">83</div>
+            <div class="dataset-overview">
+              <div class="stat-grid">
+                <div class="stats-section">
+                  <div class="dataset-stat-card">
+                    <div class="stat-icon">
+                      <i class="fas fa-laptop-code"></i>
                   </div>
-                  <div class="comparison-item">
-                    <div class="comparison-label">Domains</div>
-                    <div class="comparison-value">6</div>
+                    <div class="stat-content">
+                      <div class="stat-number">83</div>
+                      <div class="stat-label">Applications</div>
                   </div>
-                  <div class="comparison-item">
-                    <div class="comparison-label">Query-Label Pairs</div>
-                    <div class="comparison-value">8,200+</div>
                   </div>
-                  <div class="comparison-item">
-                    <div class="comparison-label">Demonstrations</div>
-                    <div class="comparison-value">450+</div>
+                  <div class="dataset-stat-card">
+                    <div class="stat-icon">
+                      <i class="fas fa-layer-group"></i>
+                  </div>
+                    <div class="stat-content">
+                      <div class="stat-number">6</div>
+                      <div class="stat-label">Domains</div>
+                </div>
+                  </div>
+                  <div class="dataset-stat-card">
+                    <div class="stat-icon">
+                      <i class="fas fa-tags"></i>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-number">8,200+</div>
+                      <div class="stat-label">Query-Label Pairs</div>
+                    </div>
+                  </div>
+                  <div class="dataset-stat-card">
+                    <div class="stat-icon">
+                      <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-number">450+</div>
+                      <div class="stat-label">Demonstrations</div>
+                    </div>
                   </div>
                 </div>
-                
+                <div class="info-section">
+                  <div class="dataset-highlight">
+                    <div class="highlight-icon">
+                      <i class="fas fa-info-circle"></i>
+                    </div>
                 <p>Each application is represented by multiple screenshots capturing different states and functionalities, ensuring comprehensive coverage of UI components and interaction patterns.</p>
               </div>
-              <div class="column is-5">
-                <figure class="image mt-2" style="max-width: 320px; margin: 0 auto;">
-                  <img src="./static/images/pie-chart.png" alt="Dataset Domain Distribution" style="box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
-                </figure>
-                <p class="has-text-centered is-size-7 mt-2">Domain distribution across the UI-Vision dataset</p>
+                  <div class="section-title">
+                    Scale & <span>Diversity</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="visualization-content">
+                <div class="pie-chart-container">
+                  <img src="./static/images/pie-chart.png" alt="Dataset Domain Distribution" class="pie-chart">
+                  <p class="chart-caption">Domain distribution across the UI-Vision dataset</p>
+                </div>
               </div>
             </div>
           </div>
@@ -1208,52 +548,103 @@
         
         <h3 class="insights-header">Benchmark Tasks</h3>
         
-        <div class="insight-card">
-          <h4 class="insight-title"><i class="fas fa-object-group"></i>Element Grounding</h4>
-          <div class="insight-content">
-            <p>In this fundamental task, models must identify and localize specific UI elements based on textual queries. We evaluate using <span class="highlight-text">Intersection over Union (IoU)</span> with the ground truth bounding boxes.</p>
-            
-            <p>Example query: <span class="insight-metric">"Find the save button"</span></p>
-            
-            <p>Element grounding serves as a foundation for AI assistants to interact with GUIs, as accurate element identification is essential for executing user commands.</p>
+        <div class="task-grid">
+          <div class="task-card">
+            <div class="task-icon">
+              <i class="fas fa-object-group"></i>
+            </div>
+            <h4 class="task-title">Element Grounding</h4>
+            <div class="task-metrics">
+              <div class="metric">
+                <span class="metric-label">Success Rate</span>
+                <span class="metric-value">31.4%</span>
+                <div class="metric-bar" style="--percentage: 31.4%"></div>
+              </div>
+            </div>
+            <div class="task-example">
+              <div class="example-query">
+                <i class="fas fa-search"></i>
+                <span>"Find the save button"</span>
+              </div>
+              <div class="example-result">
+                <i class="fas fa-check-circle"></i>
+                <span>Locates specific UI elements</span>
+              </div>
+            </div>
+            <div class="task-importance">
+              <i class="fas fa-star"></i>
+              <span>Foundation for GUI interaction</span>
           </div>
         </div>
         
-        <div class="insight-card">
-          <h4 class="insight-title"><i class="fas fa-th-large"></i>Layout Grounding</h4>
-          <div class="insight-content">
-            <p>This more challenging task evaluates an AI's ability to group UI components into functional regions. Models must identify complete interface sections like <span class="highlight-text">toolbars, menus, or content areas</span>.</p>
-            
-            <p>Example query: <span class="insight-metric">"Highlight the main navigation menu"</span></p>
-            
-            <p>Layout grounding tests deeper understanding of interface structure and organization—essential for contextually aware interactions and explaining interface functionality.</p>
+          <div class="task-card">
+            <div class="task-icon">
+              <i class="fas fa-th-large"></i>
+            </div>
+            <h4 class="task-title">Layout Grounding</h4>
+            <div class="task-metrics">
+              <div class="metric">
+                <span class="metric-label">Success Rate</span>
+                <span class="metric-value">24.3%</span>
+                <div class="metric-bar" style="--percentage: 24.3%"></div>
+              </div>
+            </div>
+            <div class="task-example">
+              <div class="example-query">
+                <i class="fas fa-search"></i>
+                <span>"Highlight the main navigation menu"</span>
+              </div>
+              <div class="example-result">
+                <i class="fas fa-check-circle"></i>
+                <span>Groups functional regions</span>
+              </div>
+            </div>
+            <div class="task-importance">
+              <i class="fas fa-star"></i>
+              <span>Tests interface structure understanding</span>
           </div>
         </div>
         
-        <div class="insight-card">
-          <h4 class="insight-title"><i class="fas fa-play-circle"></i>Action Prediction</h4>
-          <div class="insight-content">
-            <p>Our most complex task requires models to predict the next appropriate action given a task description, a screenshot, and action history. This evaluates sequential decision-making and task planning abilities.</p>
-            
-            <p>Example task: <span class="insight-metric">"Create a new document and save it as 'report.docx'"</span></p>
-            
-            <p>Success in this task requires understanding both the current state of the interface and the goal-directed sequence of actions needed to complete a user's request.</p>
+          <div class="task-card">
+            <div class="task-icon">
+              <i class="fas fa-play-circle"></i>
+            </div>
+            <h4 class="task-title">Action Prediction</h4>
+            <div class="task-metrics">
+              <div class="metric">
+                <span class="metric-label">Success Rate</span>
+                <span class="metric-value">12.8%</span>
+                <div class="metric-bar" style="--percentage: 12.8%"></div>
+              </div>
+            </div>
+            <div class="task-example">
+              <div class="example-query">
+                <i class="fas fa-search"></i>
+                <span>"Create a new document and save it"</span>
+              </div>
+              <div class="example-result">
+                <i class="fas fa-check-circle"></i>
+                <span>Plans multi-step actions</span>
+              </div>
+            </div>
+            <div class="task-importance">
+              <i class="fas fa-star"></i>
+              <span>Tests sequential decision-making</span>
+            </div>
           </div>
         </div>
         
-        <div class="conclusion-box">
-          <p>UI-Vision provides a comprehensive evaluation framework for assessing AI systems' capabilities in understanding and interacting with real desktop interfaces. By spanning multiple tasks of increasing complexity, it enables researchers to identify specific strengths and weaknesses in current models.</p>
+        <div class="task-summary">
+          <div class="summary-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="summary-content">
+            <h4>Task Progression</h4>
+            <p>Tasks increase in complexity from basic element identification to complex action sequences, enabling comprehensive evaluation of AI capabilities in GUI environments.</p>
+          </div>
         </div>
       </div>
       
-      <div class="columns is-centered mb-5 mt-5">
-        <div class="column is-full-width">
-          <div class="content has-text-centered">
-            <img src="./static/images/grounding.png" alt="Grounding Tasks Examples" class="project-image">
-            <p class="caption">Figure 3: Grounding Tasks Examples - Illustrating the benchmark's core challenges</p>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
   
@@ -1266,477 +657,286 @@
         </div>
       </div>
       
-      <div class="columns is-centered mb-5">
-        <div class="column is-full-width">
-          <div class="content">
-            <h3 class="title is-4">Element Grounding Results</h3>
+      <div class="section">
+        <!-- Visual Performance Overview -->
+        <div class="performance-overview">
+          <h4 class="title is-4">Model Performance Overview</h4>
+          <div class="model-categories">
+            <div class="category-card">
+              <div class="category-icon">
+                <i class="fas fa-robot"></i>
+              </div>
+              <h4>Open VLMs</h4>
+              <div class="score">
+                <span class="value">2.8%</span>
+                <div class="score-bar" style="--percentage: 2.8%"></div>
+              </div>
+              <div class="category-note">Base visual language models</div>
+            </div>
+
+            <div class="category-card">
+              <div class="category-icon">
+                <i class="fas fa-lock"></i>
+              </div>
+              <h4>Closed VLMs</h4>
+              <div class="score">
+                <span class="value">8.3%</span>
+                <div class="score-bar" style="--percentage: 8.3%"></div>
+              </div>
+              <div class="category-note">Proprietary models</div>
+            </div>
+
+            <div class="category-card">
+              <div class="category-icon">
+                <i class="fas fa-microchip"></i>
+              </div>
+              <h4>Small GUI Agents</h4>
+              <div class="score">
+                <span class="value">17.6%</span>
+                <div class="score-bar" style="--percentage: 17.6%"></div>
+              </div>
+              <div class="category-note">&lt;8B parameters</div>
+            </div>
+
+            <div class="category-card highlight">
+              <div class="category-icon">
+                <i class="fas fa-brain"></i>
+              </div>
+              <h4>Large GUI Agents</h4>
+              <div class="score">
+                <span class="value">25.5%</span>
+                <div class="score-bar" style="--percentage: 25.5%"></div>
+              </div>
+              <div class="category-note">&gt;8B parameters</div>
+            </div>
+          </div>
+
+          <div class="key-findings">
+            <div class="finding-card">
+              <div class="finding-header">
+                <i class="fas fa-chart-line"></i>
+                <h4>Model Size Matters</h4>
+              </div>
+              <p>Larger models (50B+ parameters) consistently outperform smaller counterparts across all tasks</p>
+            </div>
+
+            <div class="finding-card">
+              <div class="finding-header">
+                <i class="fas fa-brain"></i>
+                <h4>Specialization GUI Agents</h4>
+              </div>
+              <p>GUI-specialized models show significant advantages over general-purpose visual language models</p>
+            </div>
+
+            <div class="finding-card">
+              <div class="finding-header">
+                <i class="fas fa-tasks"></i>
+                <h4>Task Complexity</h4>
+              </div>
+              <p>Performance decreases with task complexity, with spatial understanding being the most challenging</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="domain-performance">
+          <h3 class="insights-header">Performance by Domain</h3>
+          <div class="domain-bars">
+            <div class="domain-bar">
+              <div class="domain-label">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Education</span>
+              </div>
+              <div class="bar-container">
+                <div class="bar" style="--percentage: 30.7%">
+                  <span class="bar-value">30.7%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="domain-bar">
+              <div class="domain-label">
+                <i class="fas fa-globe"></i>
+                <span>Browsers</span>
+              </div>
+              <div class="bar-container">
+                <div class="bar" style="--percentage: 48.2%">
+                  <span class="bar-value">48.2%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="domain-bar">
+              <div class="domain-label">
+                <i class="fas fa-code"></i>
+                <span>Development</span>
+              </div>
+              <div class="bar-container">
+                <div class="bar" style="--percentage: 32.7%">
+                  <span class="bar-value">32.7%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="domain-bar">
+              <div class="domain-label">
+                <i class="fas fa-tasks"></i>
+                <span>Productivity</span>
+              </div>
+              <div class="bar-container">
+                <div class="bar" style="--percentage: 33.6%">
+                  <span class="bar-value">33.6%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="domain-bar">
+              <div class="domain-label">
+                <i class="fas fa-paint-brush"></i>
+                <span>Creativity</span>
+              </div>
+              <div class="bar-container">
+                <div class="bar" style="--percentage: 21.9%">
+                  <span class="bar-value">21.9%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="domain-bar">
+              <div class="domain-label">
+                <i class="fas fa-gamepad"></i>
+                <span>Entertainment</span>
+              </div>
+              <div class="bar-container">
+                <div class="bar" style="--percentage: 51.2%">
+                  <span class="bar-value">51.2%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detailed Results Table -->
             <div class="table-container">
+          <h3 class="insights-header">Detailed Performance Results</h3>
+          <div class="table-wrapper">
               <table class="result-table">
                 <thead>
                   <tr>
-                    <th>Model</th>
+                  <th rowspan="3">Model</th>
                     <th colspan="7">Basic</th>
                     <th colspan="7">Functional</th>
                     <th colspan="7">Spatial</th>
-                    <th>All</th>
+                  <th rowspan="3">Final Avg</th>
                   </tr>
                   <tr>
-                    <th>Name</th>
                     <th>Ed</th>
                     <th>Br</th>
                     <th>De</th>
                     <th>Pr</th>
                     <th>Cr</th>
                     <th>En</th>
-                    <th>Ovr</th>
+                  <th>Overall</th>
                     <th>Ed</th>
                     <th>Br</th>
                     <th>De</th>
                     <th>Pr</th>
                     <th>Cr</th>
                     <th>En</th>
-                    <th>Ovr</th>
+                  <th>Overall</th>
                     <th>Ed</th>
                     <th>Br</th>
                     <th>De</th>
                     <th>Pr</th>
                     <th>Cr</th>
                     <th>En</th>
-                    <th>Ovr</th>
-                    <th>Avg</th>
+                  <th>Overall</th>
+                </tr>
+                <tr>
+                  <th>(215)</th>
+                  <th>(56)</th>
+                  <th>(376)</th>
+                  <th>(605)</th>
+                  <th>(438)</th>
+                  <th>(82)</th>
+                  <th>(1772)</th>
+                  <th>(215)</th>
+                  <th>(56)</th>
+                  <th>(376)</th>
+                  <th>(605)</th>
+                  <th>(438)</th>
+                  <th>(82)</th>
+                  <th>(1772)</th>
+                  <th>(212)</th>
+                  <th>(31)</th>
+                  <th>(338)</th>
+                  <th>(740)</th>
+                  <th>(586)</th>
+                  <th>(28)</th>
+                  <th>(1935)</th>
                   </tr>
                 </thead>
                 <tbody>
                   <!-- Closed-Source VLMs -->
-                  <tr>
-                    <td colspan="23" class="category-header">Closed-Source VLMs</td>
+                <tr class="table-section-header">
+                  <td colspan="22">Closed-Source VLMs</td>
                   </tr>
                   <tr class="closed-model">
                     <td>GPT-4o</td>
-                    <td>2.23</td>
-                    <td>0.00</td>
-                    <td>1.86</td>
-                    <td>1.16</td>
-                    <td>1.14</td>
-                    <td>4.88</td>
-                    <td>1.58</td>
-                    <td>1.40</td>
-                    <td>0.00</td>
-                    <td>3.19</td>
-                    <td>0.83</td>
-                    <td>0.91</td>
-                    <td>3.66</td>
-                    <td>1.52</td>
-                    <td>0.94</td>
-                    <td>0.00</td>
-                    <td>1.48</td>
-                    <td>1.22</td>
-                    <td>0.51</td>
-                    <td>3.57</td>
-                    <td>1.03</td>
+                  <td>2.23</td><td>0.00</td><td>1.86</td><td>1.16</td><td>1.14</td><td>4.88</td><td>1.58</td>
+                  <td>1.40</td><td>0.00</td><td>3.19</td><td>0.83</td><td>0.91</td><td>3.66</td><td>1.52</td>
+                  <td>0.94</td><td>0.00</td><td>1.48</td><td>1.22</td><td>0.51</td><td>3.57</td><td>1.03</td>
                     <td>1.38</td>
                   </tr>
                   <tr class="closed-model">
-                    <td>Gemini-1.5-pro</td>
-                    <td>0.47</td>
-                    <td>0.00</td>
-                    <td>1.60</td>
-                    <td>0.83</td>
-                    <td>0.46</td>
-                    <td>0.00</td>
-                    <td>0.79</td>
-                    <td>0.00</td>
-                    <td>1.79</td>
-                    <td>0.27</td>
-                    <td>0.17</td>
-                    <td>0.46</td>
-                    <td>0.00</td>
-                    <td>0.28</td>
-                    <td>0.94</td>
-                    <td>0.00</td>
-                    <td>0.89</td>
-                    <td>0.54</td>
-                    <td>0.34</td>
-                    <td>0.00</td>
-                    <td>0.57</td>
-                    <td>0.55</td>
-                  </tr>
-                  <tr class="closed-model">
-                    <td>Claude-3.5-Sonnet</td>
-                    <td>3.26</td>
-                    <td class="best-score">16.1</td>
-                    <td>5.32</td>
-                    <td>6.94</td>
-                    <td>1.83</td>
-                    <td>4.88</td>
-                    <td>5.08</td>
-                    <td class="best-score">5.12</td>
-                    <td class="best-score">19.6</td>
-                    <td>4.79</td>
-                    <td>5.95</td>
-                    <td>2.51</td>
-                    <td class="best-score">4.88</td>
-                    <td>5.19</td>
-                    <td>2.83</td>
-                    <td class="best-score">9.68</td>
-                    <td>5.03</td>
-                    <td>2.43</td>
-                    <td>2.56</td>
-                    <td>7.14</td>
-                    <td>3.15</td>
-                    <td>4.47</td>
-                  </tr>
-                  <tr class="closed-model">
                     <td>Claude-3.7-Sonnet</td>
-                    <td class="best-score">6.51</td>
-                    <td>12.5</td>
-                    <td class="best-score">7.98</td>
-                    <td class="best-score">11.2</td>
-                    <td class="best-score">9.13</td>
-                    <td class="best-score">11.0</td>
-                    <td class="best-score">9.48</td>
-                    <td class="best-score">5.12</td>
-                    <td>7.14</td>
-                    <td class="best-score">8.24</td>
-                    <td class="best-score">9.92</td>
-                    <td class="best-score">6.16</td>
-                    <td class="best-score">4.88</td>
-                    <td class="best-score">7.73</td>
-                    <td class="best-score">6.60</td>
-                    <td class="best-score">9.68</td>
-                    <td class="best-score">7.69</td>
-                    <td class="best-score">7.43</td>
-                    <td class="best-score">7.85</td>
-                    <td class="best-score">10.7</td>
-                    <td class="best-score">7.60</td>
-                    <td class="best-score">8.27</td>
+                  <td>6.51</td><td>12.5</td><td>7.98</td><td>11.24</td><td>9.13</td><td>11.0</td><td>9.48</td>
+                  <td>5.12</td><td>7.14</td><td>8.24</td><td>9.92</td><td>6.16</td><td>4.88</td><td>7.73</td>
+                  <td>6.60</td><td>9.68</td><td>7.69</td><td>7.43</td><td>7.85</td><td>10.7</td><td>7.60</td>
+                  <td>8.27</td>
                   </tr>
                   
                   <!-- Open-Source VLMs -->
-                  <tr>
-                    <td colspan="23" class="category-header">Open-Source VLMs</td>
-                  </tr>
-                  <tr class="open-vlm">
-                    <td>Qwen-2VL-7B</td>
-                    <td>2.79</td>
-                    <td>7.14</td>
-                    <td>3.72</td>
-                    <td>3.97</td>
-                    <td>0.68</td>
-                    <td>12.2</td>
-                    <td>3.44</td>
-                    <td>2.79</td>
-                    <td>12.5</td>
-                    <td>3.19</td>
-                    <td>3.97</td>
-                    <td>0.68</td>
-                    <td>6.10</td>
-                    <td>3.22</td>
-                    <td class="best-score">0.47</td>
-                    <td class="best-score">3.23</td>
-                    <td class="best-score">2.37</td>
-                    <td class="best-score">1.08</td>
-                    <td class="best-score">0.51</td>
-                    <td class="best-score">3.57</td>
-                    <td class="best-score">1.45</td>
-                    <td>2.70</td>
-                  </tr>
-                  <tr class="open-vlm">
-                    <td>Qwen-2.5VL-7B</td>
-                    <td>0.47</td>
-                    <td>0.00</td>
-                    <td>1.33</td>
-                    <td>1.65</td>
-                    <td>0.68</td>
-                    <td>1.22</td>
-                    <td>1.24</td>
-                    <td>0.47</td>
-                    <td>0.00</td>
-                    <td>0.80</td>
-                    <td>1.16</td>
-                    <td>0.46</td>
-                    <td>1.22</td>
-                    <td>0.79</td>
-                    <td>0.47</td>
-                    <td>0.00</td>
-                    <td>1.48</td>
-                    <td>0.00</td>
-                    <td>0.51</td>
-                    <td>0.00</td>
-                    <td>0.51</td>
-                    <td>0.85</td>
+                <tr class="table-section-header">
+                  <td colspan="22">Open-Source VLMs</td>
                   </tr>
                   <tr class="open-vlm">
                     <td>MiniCPM-V-8B</td>
-                    <td class="best-score">4.19</td>
-                    <td class="best-score">21.4</td>
-                    <td class="best-score">7.71</td>
-                    <td class="best-score">7.44</td>
-                    <td class="best-score">3.56</td>
-                    <td class="best-score">18.3</td>
-                    <td class="best-score">7.11</td>
-                    <td class="best-score">4.19</td>
-                    <td class="best-score">19.6</td>
-                    <td class="best-score">6.38</td>
-                    <td class="best-score">4.63</td>
-                    <td class="best-score">2.97</td>
-                    <td class="best-score">11.0</td>
-                    <td class="best-score">5.30</td>
-                    <td class="best-score">0.47</td>
-                    <td class="best-score">3.23</td>
-                    <td>1.78</td>
-                    <td>0.27</td>
-                    <td>0.17</td>
-                    <td class="best-score">3.57</td>
-                    <td class="best-score">1.45</td>
-                    <td class="best-score">4.34</td>
+                  <td>4.19</td><td>21.4</td><td>7.71</td><td>7.44</td><td>3.65</td><td>18.3</td><td>7.11</td>
+                  <td>4.19</td><td>19.6</td><td>6.38</td><td>4.63</td><td>2.97</td><td>11.0</td><td>5.30</td>
+                  <td>0.47</td><td>3.23</td><td>1.78</td><td>0.27</td><td>0.17</td><td>3.57</td><td>1.45</td>
+                  <td>4.34</td>
                   </tr>
                   
-                  <!-- Open-Source GUI Agents (<8B) -->
-                  <tr>
-                    <td colspan="23" class="category-header">Open-Source GUI Agents (<8B)</td>
+                <!-- GUI Agents (<8B) -->
+                <tr class="table-section-header">
+                  <td colspan="22">Open-Source GUI Agents (&lt;8B)</td>
                   </tr>
-                  <tr class="small-gui-agent">
-                    <td>ShowUI-2B</td>
-                    <td>5.12</td>
-                    <td>16.1</td>
-                    <td>9.84</td>
-                    <td>9.09</td>
-                    <td>3.42</td>
-                    <td>19.5</td>
-                    <td>8.07</td>
-                    <td>5.12</td>
-                    <td>12.5</td>
-                    <td>9.31</td>
-                    <td>8.60</td>
-                    <td>4.11</td>
-                    <td>15.9</td>
-                    <td>7.67</td>
-                    <td>0.94</td>
-                    <td>9.68</td>
-                    <td>2.96</td>
-                    <td>2.70</td>
-                    <td>0.68</td>
-                    <td>3.57</td>
-                    <td>2.07</td>
-                    <td>5.94</td>
-                  </tr>
-                  <tr class="small-gui-agent">
-                    <td>OSAtlas-7B</td>
-                    <td>15.8</td>
-                    <td>21.4</td>
-                    <td>22.0</td>
-                    <td>12.2</td>
-                    <td>11.6</td>
-                    <td>16.1</td>
-                    <td>11.4</td>
-                    <td>12.7</td>
-                    <td>7.50</td>
-                    <td>13.4</td>
-                    <td>11.2</td>
-                    <td>3.77</td>
-                    <td>6.45</td>
-                    <td>5.62</td>
-                    <td>3.65</td>
-                    <td>2.22</td>
-                    <td>7.14</td>
-                    <td>3.67</td>
-                    <td>9.02</td>
-                    <td>15.8</td>
-                    <td>21.4</td>
-                    <td>22.0</td>
-                  </tr>
-                  <tr class="small-gui-agent">
-                    <td>Aguvis-7B</td>
-                    <td class="best-score">16.7</td>
-                    <td>37.5</td>
-                    <td class="best-score">22.3</td>
-                    <td>16.2</td>
-                    <td>12.6</td>
-                    <td>26.8</td>
-                    <td>17.8</td>
-                    <td>17.2</td>
-                    <td>35.7</td>
-                    <td>21.5</td>
-                    <td>18.0</td>
-                    <td>13.0</td>
-                    <td>24.4</td>
-                    <td>18.3</td>
-                    <td>5.19</td>
-                    <td>9.68</td>
-                    <td>6.51</td>
-                    <td>4.05</td>
-                    <td>4.78</td>
-                    <td>14.3</td>
-                    <td>5.06</td>
-                    <td>13.7</td>
-                  </tr>
-                  <tr class="small-gui-agent">
+                <tr class="gui-agent-small">
                     <td>UI-TARS-7B</td>
-                    <td>15.4</td>
-                    <td class="best-score">41.1</td>
-                    <td>21.8</td>
-                    <td class="best-score">21.2</td>
-                    <td class="best-score">13.2</td>
-                    <td class="best-score">39.0</td>
-                    <td class="best-score">20.1</td>
-                    <td class="best-score">20.5</td>
-                    <td class="best-score">41.1</td>
-                    <td class="best-score">25.5</td>
-                    <td class="best-score">26.5</td>
-                    <td class="best-score">16.0</td>
-                    <td class="best-score">45.1</td>
-                    <td class="best-score">24.3</td>
-                    <td class="best-score">6.60</td>
-                    <td class="best-score">12.9</td>
-                    <td class="best-score">11.0</td>
-                    <td class="best-score">9.19</td>
-                    <td class="best-score">5.80</td>
-                    <td class="best-score">17.9</td>
-                    <td class="best-score">8.37</td>
-                    <td class="best-score">17.6</td>
+                  <td>15.4</td><td>41.1</td><td>21.8</td><td>21.2</td><td>13.2</td><td>39.0</td><td>20.1</td>
+                  <td>20.5</td><td>41.1</td><td>25.5</td><td>26.5</td><td>16.0</td><td>45.1</td><td>24.3</td>
+                  <td>6.60</td><td>12.9</td><td>11.0</td><td>9.2</td><td>5.8</td><td>17.9</td><td>8.37</td>
+                  <td>17.6</td>
                   </tr>
                   
-                  <!-- Open-Source GUI Agents (>8B) -->
-                  <tr>
-                    <td colspan="23" class="category-header">Open-Source GUI Agents (>8B)</td>
+                <!-- GUI Agents (>8B) -->
+                <tr class="table-section-header">
+                  <td colspan="22">Open-Source GUI Agents (>8B)</td>
                   </tr>
-                  <tr class="large-gui-agent">
-                    <td>CogAgent-9B</td>
-                    <td>11.2</td>
-                    <td>14.3</td>
-                    <td>12.5</td>
-                    <td>13.7</td>
-                    <td>8.68</td>
-                    <td>15.9</td>
-                    <td>12.0</td>
-                    <td>11.6</td>
-                    <td>14.3</td>
-                    <td>11.4</td>
-                    <td>14.7</td>
-                    <td>8.22</td>
-                    <td>18.3</td>
-                    <td>12.2</td>
-                    <td>3.30</td>
-                    <td>0.00</td>
-                    <td>1.18</td>
-                    <td>4.05</td>
-                    <td>1.37</td>
-                    <td>7.14</td>
-                    <td>2.63</td>
-                    <td>8.94</td>
-                  </tr>
-                  <tr class="large-gui-agent">
-                    <td>UGround-v1-72B</td>
-                    <td>27.0</td>
-                    <td>42.9</td>
-                    <td>31.7</td>
-                    <td>26.6</td>
-                    <td class="best-score">22.8</td>
-                    <td>40.2</td>
-                    <td>27.9</td>
-                    <td>25.1</td>
-                    <td>33.9</td>
-                    <td>30.6</td>
-                    <td>26.6</td>
-                    <td>21.0</td>
-                    <td class="best-score">40.2</td>
-                    <td>26.7</td>
-                    <td class="best-score">15.1</td>
-                    <td class="best-score">25.8</td>
-                    <td class="best-score">19.8</td>
-                    <td>13.4</td>
-                    <td class="best-score">12.8</td>
-                    <td class="best-score">25.0</td>
-                    <td class="best-score">14.9</td>
-                    <td>23.2</td>
-                  </tr>
-                  <tr class="large-gui-agent">
+                <tr class="gui-agent-large">
                     <td>UI-TARS-72B</td>
-                    <td class="best-score">30.7</td>
-                    <td class="best-score">48.2</td>
-                    <td class="best-score">32.7</td>
-                    <td class="best-score">33.6</td>
-                    <td>21.9</td>
-                    <td class="best-score">51.2</td>
-                    <td class="best-score">31.4</td>
-                    <td class="best-score">29.8</td>
-                    <td class="best-score">46.4</td>
-                    <td class="best-score">30.9</td>
-                    <td class="best-score">34.1</td>
-                    <td class="best-score">22.6</td>
-                    <td>36.6</td>
-                    <td class="best-score">30.5</td>
-                    <td>13.7</td>
-                    <td>16.1</td>
-                    <td>19.2</td>
-                    <td class="best-score">15.4</td>
-                    <td>11.1</td>
-                    <td class="best-score">25.0</td>
-                    <td>14.7</td>
-                    <td class="best-score">25.5</td>
+                  <td>30.7</td><td>48.2</td><td>32.7</td><td>33.6</td><td>21.9</td><td>51.2</td><td>31.4</td>
+                  <td>29.8</td><td>46.4</td><td>30.9</td><td>34.1</td><td>22.6</td><td>36.6</td><td>30.5</td>
+                  <td>13.7</td><td>16.1</td><td>19.2</td><td>15.4</td><td>11.1</td><td>25.0</td><td>14.7</td>
+                  <td>25.5</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <p class="table-note">
-              Table 3: Element Grounding Results across categories.
-              Categories: Ed (Education), Br (Browsers), De (Development), Pr (Productivity), Cr (Creativity), En (Entertainment).
-            </p>
+          <div class="table-caption">
+            <p>Table 1: Performance results across different settings and domains. Values shown are success rates (%). Domains: Ed (Education), Br (Browsers), De (Development), Pr (Productivity), Cr (Creativity), En (Entertainment). Numbers in parentheses indicate sample sizes.</p>
           </div>
-
-      <div class="insights-section">
-        <h3 class="insights-header">Key Findings</h3>
-        
-        <div class="insight-card">
-          <h4 class="insight-title"><i class="fas fa-chart-line"></i>Performance Analysis</h4>
-          <div class="insight-content">
-            <p>Our extensive evaluation reveals that larger models (<span class="insight-metric">50B+</span> parameters) consistently outperform smaller counterparts across all tasks. Notably, <span class="highlight-text">UI-TARS-72B</span> achieved the highest overall performance with a mean score of <span class="insight-metric">25.5%</span> across all categories.</p>
-            
-            <div class="insight-comparison">
-              <div class="comparison-item">
-                <div class="comparison-label">Open VLMs</div>
-                <div class="comparison-value">2.8%</div>
               </div>
-              <div class="comparison-item">
-                <div class="comparison-label">Closed VLMs</div>
-                <div class="comparison-value">8.3%</div>
-              </div>
-              <div class="comparison-item">
-                <div class="comparison-label">Small GUI Agents</div>
-                <div class="comparison-value">17.6%</div>
-              </div>
-              <div class="comparison-item">
-                <div class="comparison-label">Large GUI Agents</div>
-                <div class="comparison-value positive">25.5%</div>
-              </div>
-            </div>
-            
-            <p>The observed performance gap between GUI-specialized and general-purpose models suggests that domain-specific training significantly enhances GUI understanding capabilities.</p>
-          </div>
-        </div>
-        
-        <div class="insight-card">
-          <h4 class="insight-title"><i class="fas fa-puzzle-piece"></i>Task Difficulty</h4>
-          <div class="insight-content">
-            <p>Among the three main task categories, spatial grounding proved to be the most challenging, with an average performance of only <span class="insight-metric">12.8%</span> across all models. Basic grounding tasks saw the highest success rates, with top-performing models reaching up to <span class="insight-metric">31.4%</span>.</p>
-            
-            <p>This significant performance drop in spatial tasks highlights the difficulty of understanding relative positioning and spatial relationships in complex UI environments, presenting an important area for future model improvements.</p>
-          </div>
-        </div>
-        
-        <div class="insight-card">
-          <h4 class="insight-title"><i class="fas fa-laptop-code"></i>Application Domain Impact</h4>
-          <div class="insight-content">
-            <p>Performance varied significantly across application domains. Browser interfaces yielded the highest success rates (<span class="insight-metric">48.2%</span> for top models), while creativity software presented the most challenges (<span class="insight-metric">21.9%</span> at best).</p>
-            
-            <p>This domain variance suggests that interface complexity and specialized terminology significantly impact model performance, with creative software's unique elements proving particularly difficult to interpret.</p>
-          </div>
-        </div>
-        
-        <div class="conclusion-box">
-          <p>Despite recent advances, even the best models struggle with complex GUI understanding tasks, achieving only about 25% accuracy overall. This benchmark reveals significant room for improvement in visual-language models' ability to interpret and interact with real-world desktop interfaces.</p>
-        </div>
       </div>
     </div>
   </section>
@@ -1796,6 +996,32 @@
       </div>
     </div>
   </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggleBtns = document.querySelectorAll('.toggle-btn');
+      const examples = document.querySelectorAll('.example-container');
+      
+      toggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetExample = btn.dataset.example;
+          
+          // Update buttons
+          toggleBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          
+          // Update examples
+          examples.forEach(example => {
+            if (example.id === `${targetExample}-example`) {
+              example.classList.add('active');
+            } else {
+              example.classList.remove('active');
+            }
+          });
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>
