@@ -1504,7 +1504,7 @@ body {
 }
 
 .task-title {
-  font-size: 0.95rem;
+  font-size: 1.5rem;
   font-family: var(--font-mono);
   color: #1a1b26;
   margin-bottom: 0.5rem;
@@ -1703,7 +1703,7 @@ body {
 
 .task-importance i,
 .task-importance span {
-  color: #9ece6a;
+  color: #9ece6a !important;
 }
 
 .task-metrics {
@@ -2463,8 +2463,8 @@ body {
 
 .capability {
   font-family: var(--font-mono);
-  font-size: 1.25rem;
-  padding: 0.25rem 0.5rem;
+  font-size: .75rem;
+  padding: 0.5rem 0.5rem;
   background: white;
   border: 1px solid rgba(0,102,204,0.1);
   border-radius: 3px;
@@ -3107,4 +3107,18 @@ body {
   display: block;
   line-height: 1;
   margin: 0;
+}
+
+.task-card .task-importance {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.task-card .task-importance i.fas.fa-star,
+.task-card .task-importance span {
+  color: #9ece6a !important;
 }
