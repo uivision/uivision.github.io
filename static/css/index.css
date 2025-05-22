@@ -213,6 +213,50 @@ body {
 }
 
 @media (max-width: 768px) {
+  .publication-authors {
+    margin: 0.75rem 0;
+  }
+
+  .author-list {
+    font-size: 0.75rem;
+    gap: 0.2rem;
+    margin: 0.35rem 0;
+    padding: 0 0.25rem;
+  }
+  
+  .author-block {
+    padding: 0.1rem 0.25rem;
+  }
+  
+  .author-affiliations {
+    font-size: 0.7rem;
+    gap: 0.2rem;
+    margin: 0.35rem 0;
+    padding: 0 0.25rem;
+  }
+  
+  .author-correspondence {
+    font-size: 0.7rem;
+    margin-top: 0.35rem;
+    padding: 0 0.5rem;
+  }
+}
+
+/* Remove old author colors and enforce new color */
+.author-block a[style*="color:#f68946"],
+.author-block a[style*="color:#F2A900"],
+.author-block a[style*="color:#008AD7"],
+.author-block b[style*="color:#f68946"],
+.author-block b[style*="color:#0a5178"],
+.author-block b[style*="color:#F2A900"],
+.author-block b[style*="color:#35625d"],
+.author-block b[style*="color:#008AD7"],
+.author-block b[style*="color:#55181c"] {
+  color: #3b5bdb !important;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
   .hero {
     padding: 1.5rem 0 1rem;
   }
@@ -816,8 +860,8 @@ body {
 .author-block b[style*="color:#35625d"],
 .author-block b[style*="color:#008AD7"],
 .author-block b[style*="color:#55181c"] {
-  color: #4a72e5 !important;
-  font-weight: 500;
+  color: #3b5bdb !important;
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {
@@ -3328,4 +3372,20 @@ a.nav-item {
 .task-card .task-importance i.fas.fa-star,
 .task-card .task-importance span {
   color: #9ece6a !important;
+}
+
+.conference-badge {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.badge-text {
+  display: inline-block;
+  background: linear-gradient(45deg, #7aa2f7, #bb9af7);
+  color: #1a1b26;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }

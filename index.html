@@ -16,6 +16,22 @@
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/square.png">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    .conference-badge {
+      margin: 1rem 0;
+      text-align: center;
+    }
+    .badge-text {
+      display: inline-block;
+      background: linear-gradient(45deg, #7aa2f7, #bb9af7);
+      color: #1a1b26;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+  </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
   <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.16.0/gradio.js"></script>
@@ -41,6 +57,14 @@
               </a>
             </span>
             <span class="link-block">
+            <a href="https://youtu.be/JcXS4AKTfrQ" target="_blank" class="button is-dark">
+                <span class="icon">
+                  <i class="fab fa-youtube"></i>
+                </span>
+                <span>Watch Video</span>
+              </a>
+            </span>
+            <span class="link-block">
             <button class="button is-dark" disabled>
                 <span class="icon">
                   <i class="fab fa-github"></i>
@@ -58,6 +82,10 @@
               <span class="coming-soon-badge">COMING SOON</span>
               </button>
             </span>
+          </div>
+          
+          <div class="conference-badge">
+            <span class="badge-text">Accepted to ICML 2025</span>
           </div>
           
         <div class="publication-authors">
