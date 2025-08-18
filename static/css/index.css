@@ -16,6 +16,34 @@
   --max-width: 1200px;
 }
 
+/* Navigation */
+.navbar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand .navbar-item {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.navbar-item {
+  color: #4a5568;
+  transition: all 0.2s ease;
+}
+
+.navbar-item:hover {
+  color: #2c3e50;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.navbar-item.is-active {
+  color: #3273dc;
+  background-color: rgba(50, 115, 220, 0.1);
+}
+
 body {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   font-family: 'Google Sans', sans-serif;

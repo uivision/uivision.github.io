@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="AI Research Suite - Datasets, Models, and Papers">
+  <meta name="keywords" content="AI Research, Datasets, Models, Papers, UI-Vision, Star-UI">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UI-Vision Suite - Datasets, Models, and Papers</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/suite.css">
+  <link rel="icon" href="./static/images/square.png">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="index.html">
+          <img src="./static/images/square.png" alt="Logo" width="28" height="28">
+          <span class="ml-2 has-text-weight-semibold">UI-Vision Suite</span>
+        </a>
+      </div>
+
+      <div class="navbar-menu" id="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item" href="index.html">
+            <span class="icon">
+              <i class="fas fa-home"></i>
+            </span>
+            <span>UI-Vision</span>
+          </a>
+          <a class="navbar-item is-active" href="suite.html">
+            <span class="icon">
+              <i class="fas fa-th-large"></i>
+            </span>
+            <span>Suite</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="navbar-burger" id="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero suite-hero">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8 has-text-centered">
+            <div class="suite-logo">
+              <i class="fas fa-cube"></i>
+            </div>
+            <div class="system-status">
+              <span class="status-indicator online">●</span>
+              <span class="status-text">SYSTEM ONLINE</span>
+              <span class="status-time" id="current-time"></span>
+            </div>
+            <h1 class="title is-1 suite-title">
+              UI-Vision Suite
+            </h1>
+            <p class="subtitle is-4 suite-subtitle">
+              A comprehensive collection of datasets, models, and research papers for advancing UI understanding and interaction
+            </p>
+            <div class="suite-stats">
+              <div class="stat-item">
+                <span class="stat-number">2+</span>
+                <span class="stat-label">Projects</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">10K+</span>
+                <span class="stat-label">Samples</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">5+</span>
+                <span class="stat-label">Papers</span>
+              </div>
+            </div>
+            
+            <!-- Section Divider -->
+            <div class="section-divider"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section class="section projects-section">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <div class="section-header">
+            <h2 class="title is-2 has-text-centered section-title">
+              Featured Projects
+            </h2>
+            <div class="section-meta">
+              <span class="meta-item">[LOADED]</span>
+              <span class="meta-item">2/2 ACTIVE</span>
+              <span class="meta-item">● READY</span>
+            </div>
+          </div>
+          
+          <div class="projects-grid">
+            <!-- UI-Vision Project -->
+            <div class="project-card featured">
+              <div class="project-header">
+                <div class="project-icon">
+                  <i class="fas fa-desktop"></i>
+                </div>
+                <div class="project-badge">
+                  <span class="badge featured-badge">Featured</span>
+                </div>
+              </div>
+              
+              <div class="project-content">
+                <h3 class="project-title">UI-Vision</h3>
+                <div class="project-meta">
+                  <span class="meta-item">● Published</span>
+                  <span class="meta-item">ICML 2024</span>
+                  <span class="meta-item">83 Apps</span>
+                </div>
+                <p class="project-description">
+                  A desktop-centric GUI benchmark for visual perception and interaction, featuring 83 applications across 6 domains with 8,200+ query-label pairs.
+                </p>
+                
+                <div class="project-metrics">
+                  <div class="metric">
+                    <span class="metric-value">83</span>
+                    <span class="metric-label">Apps</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-value">8.2K+</span>
+                    <span class="metric-label">Samples</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-value">6</span>
+                    <span class="metric-label">Domains</span>
+                  </div>
+                </div>
+                
+                <div class="project-tags">
+                  <span class="tag">GUI Benchmark</span>
+                  <span class="tag">Visual Perception</span>
+                  <span class="tag">Desktop Automation</span>
+                </div>
+              </div>
+              
+              <div class="project-actions">
+                <a href="index.html" class="button is-primary">
+                  <span class="icon">
+                    <i class="fas fa-external-link-alt"></i>
+                  </span>
+                  <span>View Project</span>
+                </a>
+                <a href="http://arxiv.org/abs/2503.15661" target="_blank" class="button is-outlined">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </div>
+              <div class="project-terminal">
+                <div class="terminal-header">
+                  <span class="terminal-title">PROJECT STATUS</span>
+                  <span class="terminal-status">● ACTIVE</span>
+                </div>
+                <div class="terminal-content">
+                  <span class="terminal-line">> Loading project configuration...</span>
+                  <span class="terminal-line">> Status: ONLINE</span>
+                  <span class="terminal-line">> Last updated: <span id="project-time"></span></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Star-UI Project -->
+            <div class="project-card">
+              <div class="project-header">
+                <div class="project-icon">
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="project-badge">
+                  <span class="badge new-badge">New</span>
+                </div>
+              </div>
+              
+              <div class="project-content">
+                <h3 class="project-title">Star-UI</h3>
+                <div class="project-meta">
+                  <span class="meta-item">● Development</span>
+                  <span class="meta-item">Coming Soon</span>
+                </div>
+                <p class="project-description">
+                  A novel approach to UI understanding and interaction using advanced visual language models and spatial reasoning capabilities.
+                </p>
+                
+                <div class="project-metrics">
+                  <div class="metric">
+                    <span class="metric-value">Coming</span>
+                    <span class="metric-label">Soon</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-value">-</span>
+                    <span class="metric-label">Samples</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-value">-</span>
+                    <span class="metric-label">Domains</span>
+                  </div>
+                </div>
+                
+                <div class="project-tags">
+                  <span class="tag">UI Understanding</span>
+                  <span class="tag">Spatial Reasoning</span>
+                  <span class="tag">Visual Language Models</span>
+                </div>
+              </div>
+              
+              <div class="project-actions">
+                <button class="button is-primary" disabled>
+                  <span class="icon">
+                    <i class="fas fa-clock"></i>
+                  </span>
+                  <span>Coming Soon</span>
+                </button>
+                <button class="button is-outlined" disabled>
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Future Project Placeholder -->
+            <div class="project-card placeholder">
+              <div class="project-header">
+                <div class="project-icon">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              
+              <div class="project-content">
+                <h3 class="project-title">Future Project</h3>
+                <div class="project-meta">
+                  <span class="meta-item">● Planning</span>
+                  <span class="meta-item">TBD</span>
+                </div>
+                <p class="project-description">
+                  More exciting projects are in development. Stay tuned for updates on new datasets, models, and research papers.
+                </p>
+                
+                <div class="project-metrics">
+                  <div class="metric">
+                    <span class="metric-value">?</span>
+                    <span class="metric-label">Apps</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-value">?</span>
+                    <span class="metric-label">Samples</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-value">?</span>
+                    <span class="metric-label">Domains</span>
+                  </div>
+                </div>
+                
+                <div class="project-tags">
+                  <span class="tag">In Development</span>
+                  <span class="tag">Coming Soon</span>
+                </div>
+              </div>
+              
+              <div class="project-actions">
+                <button class="button is-primary" disabled>
+                  <span class="icon">
+                    <i class="fas fa-clock"></i>
+                  </span>
+                  <span>In Development</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Divider -->
+  <div class="section-divider"></div>
+
+  <!-- Datasets Section -->
+  <section class="section datasets-section">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <div class="section-header">
+            <h2 class="title is-2 has-text-centered section-title">
+              Available Datasets
+            </h2>
+            <div class="section-meta">
+              <span class="meta-item">[SCANNING]</span>
+              <span class="meta-item">3 DATASETS</span>
+              <span class="meta-item">● AVAILABLE</span>
+            </div>
+          </div>
+          <p class="subtitle is-5 has-text-centered">
+            High-quality datasets for training and evaluating AI models
+          </p>
+          
+          <div class="datasets-grid">
+            <!-- UI-Vision Dataset -->
+            <div class="dataset-card featured">
+              <div class="dataset-header">
+                <div class="dataset-icon">
+                  <i class="fas fa-desktop"></i>
+                </div>
+                <div class="dataset-badge">
+                  <span class="badge featured-badge">Featured</span>
+                </div>
+              </div>
+              
+              <div class="dataset-content">
+                <h3 class="dataset-title">UI-Vision Dataset</h3>
+                <p class="dataset-description">
+                  A comprehensive desktop GUI benchmark featuring 83 applications across 6 domains with 8,200+ query-label pairs for visual perception and interaction tasks.
+                </p>
+                
+                <div class="dataset-stats">
+                  <div class="stat">
+                    <span class="stat-value">8,200+</span>
+                    <span class="stat-label">Samples</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-value">83</span>
+                    <span class="stat-label">Applications</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-value">6</span>
+                    <span class="stat-label">Domains</span>
+                  </div>
+                </div>
+                
+                <div class="dataset-features">
+                  <span class="feature-tag">Element Grounding</span>
+                  <span class="feature-tag">Layout Analysis</span>
+                  <span class="feature-tag">Action Prediction</span>
+                  <span class="feature-tag">Expert Annotations</span>
+                </div>
+              </div>
+              
+              <div class="dataset-actions">
+                <a href="https://huggingface.co/datasets/ServiceNow/ui-vision" target="_blank" class="button is-primary">
+                  <span class="icon">
+                    <i class="fas fa-download"></i>
+                  </span>
+                  <span>Download Dataset</span>
+                </a>
+                <a href="index.html" class="button is-outlined">
+                  <span class="icon">
+                    <i class="fas fa-info-circle"></i>
+                  </span>
+                  <span>Learn More</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Star-UI Dataset -->
+            <div class="dataset-card">
+              <div class="dataset-header">
+                <div class="dataset-icon">
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="dataset-badge">
+                  <span class="badge new-badge">Coming Soon</span>
+                </div>
+              </div>
+              
+              <div class="dataset-content">
+                <h3 class="dataset-title">Star-UI Dataset</h3>
+                <p class="dataset-description">
+                  Advanced UI understanding dataset with enhanced spatial reasoning capabilities and multi-modal interaction patterns.
+                </p>
+                
+                <div class="dataset-stats">
+                  <div class="stat">
+                    <span class="stat-value">TBD</span>
+                    <span class="stat-label">Samples</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-value">TBD</span>
+                    <span class="stat-label">Applications</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-value">TBD</span>
+                    <span class="stat-label">Domains</span>
+                  </div>
+                </div>
+                
+                <div class="dataset-features">
+                  <span class="feature-tag">Spatial Reasoning</span>
+                  <span class="feature-tag">Multi-modal</span>
+                  <span class="feature-tag">Advanced VLMs</span>
+                </div>
+              </div>
+              
+              <div class="dataset-actions">
+                <button class="button is-primary" disabled>
+                  <span class="icon">
+                    <i class="fas fa-clock"></i>
+                  </span>
+                  <span>Coming Soon</span>
+                </button>
+                <button class="button is-outlined" disabled>
+                  <span class="icon">
+                    <i class="fas fa-info-circle"></i>
+                  </span>
+                  <span>Learn More</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Future Dataset Placeholder -->
+            <div class="dataset-card placeholder">
+              <div class="dataset-header">
+                <div class="dataset-icon">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              
+              <div class="dataset-content">
+                <h3 class="dataset-title">Future Datasets</h3>
+                <p class="dataset-description">
+                  We're continuously developing new datasets to advance AI research. Stay tuned for updates on specialized datasets for various domains and tasks.
+                </p>
+                
+                <div class="dataset-stats">
+                  <div class="stat">
+                    <span class="stat-value">?</span>
+                    <span class="stat-label">Samples</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-value">?</span>
+                    <span class="stat-label">Applications</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-value">?</span>
+                    <span class="stat-label">Domains</span>
+                  </div>
+                </div>
+                
+                <div class="dataset-features">
+                  <span class="feature-tag">In Development</span>
+                  <span class="feature-tag">Specialized</span>
+                  <span class="feature-tag">Multi-domain</span>
+                </div>
+              </div>
+              
+              <div class="dataset-actions">
+                <button class="button is-primary" disabled>
+                  <span class="icon">
+                    <i class="fas fa-clock"></i>
+                  </span>
+                  <span>In Development</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Divider -->
+  <div class="section-divider"></div>
+
+  <!-- Research Areas -->
+  <section class="section research-section">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <h2 class="title is-2 has-text-centered section-title">
+            Research Areas
+          </h2>
+          
+          <div class="research-grid">
+            <div class="research-card">
+              <div class="research-icon">
+                <i class="fas fa-eye"></i>
+              </div>
+              <h3 class="research-title">Computer Vision</h3>
+              <p class="research-description">
+                Advanced visual understanding and perception systems for complex environments.
+              </p>
+            </div>
+            
+            <div class="research-card">
+              <div class="research-icon">
+                <i class="fas fa-brain"></i>
+              </div>
+              <h3 class="research-title">Machine Learning</h3>
+              <p class="research-description">
+                Novel approaches to training and deploying AI models for real-world applications.
+              </p>
+            </div>
+            
+            <div class="research-card">
+              <div class="research-icon">
+                <i class="fas fa-mouse-pointer"></i>
+              </div>
+              <h3 class="research-title">Human-Computer Interaction</h3>
+              <p class="research-description">
+                Intuitive interfaces and interaction paradigms for seamless human-AI collaboration.
+              </p>
+            </div>
+            
+            <div class="research-card">
+              <div class="research-icon">
+                <i class="fas fa-robot"></i>
+              </div>
+              <h3 class="research-title">Automation</h3>
+              <p class="research-description">
+                Intelligent automation systems that can understand and interact with complex software environments.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Citations & Related Work Section -->
+  <section class="section citations-section">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <h2 class="title is-2 has-text-centered section-title">
+            Community Usage & Extensions
+          </h2>
+          <p class="subtitle is-5 has-text-centered">
+            Research and projects using UI-Vision resources and building on top of them
+          </p>
+          
+          <div class="usage-list">
+            <!-- Example Usage Item -->
+            <div class="usage-item">
+              <div class="usage-icon">
+                <i class="fas fa-microchip"></i>
+              </div>
+              <div class="usage-content">
+                <div class="usage-header">
+                  <h3 class="usage-title">"Advanced GUI Understanding with Multi-Modal Vision Models"</h3>
+                  <span class="usage-badge">Recent</span>
+                </div>
+                <p class="usage-authors">Zhang et al., ICML 2024</p>
+                <p class="usage-description">
+                  Uses UI-Vision benchmark to develop enhanced visual language models for GUI understanding tasks.
+                </p>
+                <div class="usage-tags">
+                  <span class="usage-tag">GUI Understanding</span>
+                  <span class="usage-tag">Multi-Modal</span>
+                  <span class="usage-tag">Benchmark Usage</span>
+                </div>
+              </div>
+              <div class="usage-links">
+                <a href="#" target="_blank" class="usage-link">
+                  <i class="fas fa-external-link-alt"></i>
+                  <span>Paper</span>
+                </a>
+                <a href="#" target="_blank" class="usage-link">
+                  <i class="fas fa-code"></i>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Another Usage Item -->
+            <div class="usage-item">
+              <div class="usage-icon">
+                <i class="fas fa-mobile-alt"></i>
+              </div>
+              <div class="usage-content">
+                <div class="usage-header">
+                  <h3 class="usage-title">"Mobile UI-Vision: Extending Desktop Benchmarks to Mobile Interfaces"</h3>
+                  <span class="usage-badge">Dataset</span>
+                </div>
+                <p class="usage-authors">Chen et al., NeurIPS 2024</p>
+                <p class="usage-description">
+                  Extends UI-Vision framework to mobile applications, creating comprehensive mobile GUI benchmark.
+                </p>
+                <div class="usage-tags">
+                  <span class="usage-tag">Mobile UI</span>
+                  <span class="usage-tag">Framework Extension</span>
+                  <span class="usage-tag">Touch Interaction</span>
+                </div>
+              </div>
+              <div class="usage-links">
+                <a href="#" target="_blank" class="usage-link">
+                  <i class="fas fa-external-link-alt"></i>
+                  <span>Paper</span>
+                </a>
+                <a href="#" target="_blank" class="usage-link">
+                  <i class="fas fa-database"></i>
+                  <span>Dataset</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Another Usage Item -->
+            <div class="usage-item">
+              <div class="usage-icon">
+                <i class="fas fa-robot"></i>
+              </div>
+              <div class="usage-content">
+                <div class="usage-header">
+                  <h3 class="usage-title">"Automated UI Testing with Vision-Language Models"</h3>
+                  <span class="usage-badge">Application</span>
+                </div>
+                <p class="usage-authors">Wang et al., AAAI 2024</p>
+                <p class="usage-description">
+                  Leverages UI-Vision dataset for training automated UI testing systems with visual understanding.
+                </p>
+                <div class="usage-tags">
+                  <span class="usage-tag">Automated Testing</span>
+                  <span class="usage-tag">Dataset Training</span>
+                  <span class="usage-tag">Quality Assurance</span>
+                </div>
+              </div>
+              <div class="usage-links">
+                <a href="#" target="_blank" class="usage-link">
+                  <i class="fas fa-external-link-alt"></i>
+                  <span>Paper</span>
+                </a>
+                <a href="#" target="_blank" class="usage-link">
+                  <i class="fas fa-tools"></i>
+                  <span>Tool</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Submit Your Work Item -->
+            <div class="usage-item submit-item">
+              <div class="usage-icon">
+                <i class="fas fa-plus"></i>
+              </div>
+              <div class="usage-content">
+                <div class="usage-header">
+                  <h3 class="usage-title">Submit Your Work</h3>
+                  <span class="usage-badge">Open</span>
+                </div>
+                <p class="usage-authors">Community Contributions</p>
+                <p class="usage-description">
+                  Using UI-Vision resources in your research? Share your work with the community.
+                </p>
+                <div class="usage-tags">
+                  <span class="usage-tag">Open for Submissions</span>
+                  <span class="usage-tag">Community Driven</span>
+                </div>
+              </div>
+              <div class="usage-links">
+                <a href="mailto:contact@example.com" class="usage-link">
+                  <i class="fas fa-envelope"></i>
+                  <span>Submit</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Divider -->
+  <div class="section-divider"></div>
+
+  <!-- Contact Section -->
+  <section class="section contact-section">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8 has-text-centered">
+          <h2 class="title is-2 section-title">
+            Get Involved
+          </h2>
+          <p class="subtitle is-5">
+            Interested in collaborating or contributing to our research? We'd love to hear from you.
+          </p>
+          
+          <div class="contact-actions">
+            <a href="mailto:contact@example.com" class="button is-primary is-medium">
+              <span class="icon">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <span>Contact Us</span>
+            </a>
+            <a href="https://github.com/uivision" target="_blank" class="button is-outlined is-medium">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top-btn" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-4">
+          <h3 class="title is-5">UI-Vision Suite</h3>
+          <p class="subtitle is-6">
+            Advancing UI understanding and interaction through comprehensive datasets, models, and research papers.
+          </p>
+        </div>
+        <div class="column is-4">
+          <h3 class="title is-5">Projects</h3>
+          <ul>
+            <li><a href="index.html">UI-Vision</a></li>
+            <li><a href="#">Star-UI</a></li>
+            <li><a href="#">Future Projects</a></li>
+          </ul>
+        </div>
+        <div class="column is-4">
+          <h3 class="title is-5">Connect</h3>
+          <div class="social-links">
+            <a href="#" class="icon-link">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="#" class="icon-link">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="icon-link">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="content has-text-centered">
+        <p>&copy; 2025 UI-Vision Suite. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Add animation on scroll for project cards
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.project-card, .dataset-card, .usage-item, .research-card').forEach(card => {
+        observer.observe(card);
+      });
+
+      // Back to top button functionality
+      const backToTopBtn = document.getElementById('back-to-top');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      });
+
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+
+      // Mobile navigation toggle
+      const navbarBurger = document.getElementById('navbar-burger');
+      const navbarMenu = document.getElementById('navbar-menu');
+      
+      navbarBurger.addEventListener('click', () => {
+        navbarBurger.classList.toggle('active');
+        navbarMenu.classList.toggle('is-active');
+      });
+    });
+  </script>
+</body>
+
+</html>
